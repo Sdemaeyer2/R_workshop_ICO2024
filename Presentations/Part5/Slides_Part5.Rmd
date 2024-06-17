@@ -790,32 +790,60 @@ Create a plot of predicted values based on the effect of body_mass_g
 
 Function: .UA-red[`plot_model()`] with `type = "pred"` specifically to plot **predicted values**
 
-```{r, out.height = "70%", out.width="70%"}
+.pull-left[
+```{r, echo=TRUE, eval=FALSE}
+plot_model(Model2, 
+           type = "pred", 
+           terms = "body_mass_g")
+```
+]
+
+.pull-right[
+```{r, echo=FALSE, eval=TRUE, fig.align='center', fig.width=7, fig.height=5}
 plot_model(Model2, type = "pred", terms = "body_mass_g")
 ```
-
+]
 ---
 
 ## Some cool stuff with the .UA-red[`sjplot`] package
 
 Function: .UA-red[`plot_model()`] creates a **ggplot object**! So we can customize it!
 
-```{r, out.height = "70%", out.width="70%"}
+.pull-left[
+```{r, echo=TRUE, eval=FALSE}
+plot_model(Model2, 
+           type = "pred", 
+           terms = "body_mass_g") +
+  theme_minimal()
+```
+]
+
+.pull-right[
+```{r, echo=FALSE, eval=TRUE, fig.align='center', fig.width=7, fig.height=5}
 plot_model(Model2, type = "pred", terms = "body_mass_g") +
   theme_minimal()
 ```
-
+]
 ---
 ## Some cool stuff with the .UA-red[`sjplot`] package
 
 Create a plot of the different parameter estimates in the model
 
 Function: .UA-red[`plot_model()`] without a `type = pred` argument
-```{r, out.height = "70%", out.width="70%"}
+
+.pull-left[
+```{r, echo=TRUE, eval=FALSE}
 plot_model(Model2) +
   theme_minimal()
 ```
+]
 
+.pull-right[
+```{r, echo=FALSE, eval=TRUE, fig.align='center', fig.width=7, fig.height=5}
+plot_model(Model2) +
+  theme_minimal()
+```
+]
 ---
 ##Other Statistical Modelling in R
 

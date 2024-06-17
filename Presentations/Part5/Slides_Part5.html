@@ -98,7 +98,7 @@ name: part1
 ]
 
 .pull-right[
-.UA-red[Let op voor NA's!!]
+.UA-red[Watch out for NA's!!]
 .footnotesize[
 
 ```r
@@ -854,27 +854,37 @@ Create a plot of predicted values based on the effect of body_mass_g
 
 Function: .UA-red[`plot_model()`] with `type = "pred"` specifically to plot **predicted values**
 
+.pull-left[
 
 ```r
-plot_model(Model2, type = "pred", terms = "body_mass_g")
+plot_model(Model2, 
+           type = "pred", 
+           terms = "body_mass_g")
 ```
+]
 
-&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-37-1.png" width="504" /&gt;
-
+.pull-right[
+&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-38-1.png" width="504" style="display: block; margin: auto;" /&gt;
+]
 ---
 
 ## Some cool stuff with the .UA-red[`sjplot`] package
 
 Function: .UA-red[`plot_model()`] creates a **ggplot object**! So we can customize it!
 
+.pull-left[
 
 ```r
-plot_model(Model2, type = "pred", terms = "body_mass_g") +
+plot_model(Model2, 
+           type = "pred", 
+           terms = "body_mass_g") +
   theme_minimal()
 ```
+]
 
-&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-38-1.png" width="504" /&gt;
-
+.pull-right[
+&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-40-1.png" width="504" style="display: block; margin: auto;" /&gt;
+]
 ---
 ## Some cool stuff with the .UA-red[`sjplot`] package
 
@@ -882,13 +892,17 @@ Create a plot of the different parameter estimates in the model
 
 Function: .UA-red[`plot_model()`] without a `type = pred` argument
 
+.pull-left[
+
 ```r
 plot_model(Model2) +
   theme_minimal()
 ```
+]
 
-&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-39-1.png" width="504" /&gt;
-
+.pull-right[
+&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-42-1.png" width="504" style="display: block; margin: auto;" /&gt;
+]
 ---
 ##Other Statistical Modelling in R
 
