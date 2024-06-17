@@ -1,0 +1,633 @@
+---
+title: "Solutions to ggplot2-exercises"
+execute: 
+  cache: true
+format:
+  html:
+    toc: true
+    toc-location: left
+    smooth-scroll: true
+    theme: sandstone
+    self-contained: true
+---
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+
+
+# Introduction
+
+Creating your own graphs using `ggplot2` is much more motivating than watching some slides. Time to get started yourself with your recently acquired `ggplot2`-skills!
+
+Below are exercises for each part of the slides. Each time you will find an empty code block in which you can insert the necessary R code (as below).
+
+```{r}
+# Code here
+    
+```
+
+You can check whether your code is working by clicking on the green arrow at the top right of a code block. This executes the code you wrote.
+
+It works? Great!
+
+Does it not work? You can also take a look in the solution key `Exercises_ggplot2_solution.Rmd` or `Exercises_ggplot2_solution.html` !
+
+Time to get started!
+
+# The data
+
+Obviously, we need to start by getting our data ready and loading it into R. For this exercise, we will play a little further with the `penguins` data from the `palmerpenguins` package .
+
+Execute the code below to load and activate the package.
+
+💡 *Don't forget to install this package first (if you haven't done so already)*
+
+```{r}
+#| echo: true
+#| 
+library(palmerpenguins)
+data("penguins")
+```
+
+# Load some additional packages
+
+Throughout the exercises, we will use two additional packages:    
+- `tidyverse`: to manipulate data  
+- `patchwork`: to combine plots  
+
+💡 *Don't forget to install these packages first (if you haven't done so already)*
+
+```{r}
+#| message: false
+#| echo: true
+#| warning: false
+
+library(tidyverse)
+library(patchwork)
+```
+
+# Part 1: Visualising categorical variables
+
+## 1.1 Basic barplot
+
+The `penguins` data contains a variable `year` that indicates when each penguin was observed. Create a simple barplot of the variable `year`.
+
+💡 *Check how the variable is defined in R. To create a barplot, a `factor` or `character` variable works better than a `numeric` variable.*
+
+```{r}
+#| echo: true
+
+# 'year' is a numeric variable. 
+# This variable needs to be converted into a factor.
+# This can be done in multiple ways.
+# We briefly show how the tidyverse can help in doing so and  
+# how the result can be "piped" into the `ggplot()-function`
+
+penguins %>%
+  ## Convert 'year' into factor
+  mutate(
+    year = as.factor(year)
+  ) %>%
+  ## "Pipe" result" into ggplot...
+  ggplot(
+    aes(
+      x = year
+      )
+    ) +
+  geom_bar()
+```
+
+## 1.2 Add colors, titles and labels
+
+Now that you have created your first barplot, it is time to add some spice to the plot! Change the colours of the bars to colours of your own choosing. Also, add meaningful titles and think about labels for the axes.  
+
+💡 *This and the other assignments contain many degrees of freedom for you as a designer of the barplot. The solutions in this response file are just one of many possibilities.*
+
+```{r}
+#| echo: true
+
+penguins %>%
+  ## Convert 'year' into factor
+  mutate(
+    year = as.factor(year)
+  ) %>%
+  ## "Pipe" result" into ggplot...
+  ggplot(
+    aes(
+      x = year
+      )
+    ) +
+  geom_bar(
+    aes(fill = year)
+  ) +
+  ## Add colors (from a colorblind friendly pallet )
+  scale_fill_manual(
+    values = c("#E69F00", "#56B4E9", "#009E73")
+      ) +
+  labs(
+    title = "Palmer penguins",
+    subtitle = "Number of observations per year",
+    x = "",
+    y = "Number of observations"
+  )
+
+```
+
+## 1.3 Change theme
+
+Your barplot is almost ready! Now you can play around with the `theme` of the plot.
+
+There are a number of default `themes` in `ggplot2`:  
+- `theme_grey()`  
+- `theme_bw()`  
+- `theme_linedraw()`  
+- `theme_light()`  
+- `theme_dark()`  
+- `theme_minimal()`  
+- `theme_classic()`  
+- `theme_void()`  
+- `theme_test()`  
+
+Reuse the code you made and make sure that it is saved as an object with the name `P1`.
+
+Then, print `P1` and add another theme. This code should look like this: `P1 + theme_minimal()` Play around with the themes and see how the result differs!
+
+```{r}
+#| echo: true
+
+P1 <- penguins %>%
+  ## Convert 'year' into factor
+  mutate(
+    year = as.factor(year)
+  ) %>%
+  ## "Pipe" result" into ggplot...
+  ggplot(
+    aes(
+      x = year
+      )
+    ) +
+  geom_bar(
+    aes(fill = year)
+  ) +
+  ## Add colors (from a colorblind friendly palette)
+  scale_fill_manual(
+    values = c("#E69F00", "#56B4E9", "#009E73")
+      ) +
+  labs(
+    title = "Palmer penguins",
+    subtitle = "Number of observations per year",
+    x = "",
+    y = "Number of observations"
+  )
+
+P1 + theme_light()
+```
+
+## 1.4 Omit legend
+
+A final step in finishing the barplot is to omit the legend. (After all, the legend is redundant and  might as well be removed.)
+
+```{r}
+#| echo: true
+
+P1 + theme_light() + theme(legend.position = "none")
+```
+
+## 1.5 Lollipop plot
+
+Rework the barplot to a lollipop plot. Reuse as much of the code you wrote as possible!
+
+```{r}
+#| echo: true
+
+penguins %>% 
+  ## Convert 'year' into factor
+  mutate(
+    year = as.factor(year)
+  ) %>%
+  count(year) %>% 
+  ggplot(aes(x = year, y = n)) + 
+  geom_point( 
+    aes(col = year) 
+  ) +  
+  geom_segment(  
+    aes(x = year, xend = year, 
+        y = 0, yend = n, col = year)
+    ) +
+  ## Add colors (from a colorblind friendly palette)
+  scale_fill_manual(
+    values = c("#E69F00", "#56B4E9", "#009E73")
+      ) +
+  labs(
+    title = "Palmer penguins",
+    subtitle = "Number of observations per year",
+    x = "",
+    y = "Number of observations"
+  ) +
+  theme_light() + 
+  theme(legend.position = "none")
+
+```
+
+# Part 2: Visualising quantitative variables
+
+## 2.1 Basic histogram  
+
+The penguins data contains measurements of bill length (`bill_length_mm`) and bill depth (`bill_depth_mm`). Both variables are expressed in millimetres.
+
+![Variables about the penguins' bill](img/bill_variables.jpg){width="300"}
+
+Create a histogram of the distribution of the variable `bill_length_mm`. Make sure we can distinguish the three penguin `species` (by using a fill color).
+
+```{r}
+#| echo: true
+
+ggplot(
+  penguins,
+  aes(
+    x = bill_length_mm)
+  ) +
+  geom_histogram(
+    aes(
+      fill = species
+      )
+  )
+```
+
+## 2.2 Add facets  
+
+Next, create a histogram for each of the three species using `facet_wrap(~species)`. Make sure that male and female penguins can be visually  distinguished (using appropriate colors). At the same time, provide a useful title and subtitle and label the scales (using self-selected labels).
+
+💡 *Attention! The gender of some penguins has not been recorded. You have to filter these observations BEFORE creating the histogram. A piece of code has already been included to do so. That code now has a `#` in front of it. Remove that `#` so the code will be executed.*
+
+```{r}
+#| echo: true
+
+# There are several ways to define colors in R.
+# Here, colors are specified using hex colors (see for example https://www.color-hex.com/)
+# If you want to know which color will be assigned to "male" and "female", 
+# you can run the code `levels(penguins$sex)`.
+# The first color that you specify is assigned to the first 'level' 
+# ("female" in this case), the second color is assigned to the second 'level' 
+# ("male" in this case).
+
+penguins %>% filter(!is.na(sex)) %>%
+  ggplot(
+    aes(
+      x = bill_length_mm)
+    ) +
+    geom_histogram(
+      aes(
+        fill = sex
+        )
+    ) +
+    scale_fill_manual(
+      values = c("#F8B7CD", "#67A3D9")
+    ) +
+    facet_wrap(~species) +
+    theme_minimal() +
+    labs(
+      title = "Palmer Penguins",
+      subtitle = "Bill length by species and sex",
+      x = "Bill length (in mm)"
+    )
+```
+
+## 2.3 Density plot  
+
+Turn the histogram you created in 2.2 into a density plot. 
+
+```{r}
+#| echo: true
+
+penguins %>% filter(!is.na(sex)) %>%
+  ggplot(
+    aes(
+      x = bill_length_mm)
+    ) +
+    geom_density(
+      aes(
+        fill = sex
+        ),
+      alpha = .6
+    ) +
+    scale_fill_manual(
+      values = c("#F8B7CD", "#67A3D9")
+    ) +
+    facet_wrap(.~species) +
+    theme_minimal() +
+    labs(
+      title = "Palmer Penguins",
+      subtitle = "Bill length by species and sex",
+      x = "Bill length (in mm)"
+    )
+```
+
+## 2.4 Rain cloud plot  
+
+Finally, create a rain cloud plot that shows the differences between the three penguin species. You can ignore (for now) the difference between male and female penguins.
+
+💡 *Attention! To create a rain cloud plot, an additional package should be loaded (and installed): `ggdist`.*
+
+```{r}
+#| echo: true
+
+library(ggdist)
+
+ggplot(penguins, aes(x = species, y = bill_length_mm)) + 
+  stat_halfeye(
+    adjust = .5, 
+    width = .6, 
+    .width = 0, 
+    justification = -.2, 
+    point_colour = NA
+  ) + 
+  geom_boxplot(
+    width = .15, 
+    outlier.shape = NA
+  ) +
+  geom_point(
+    size = 1.3,
+    alpha = .3,
+    position = position_jitter(
+      seed = 1, width = .1
+  )) +
+  labs(
+    title = "Palmer penguins",
+    subtitle = "Distribution of bill length by species",
+    x = "",
+    y = "Bill length"
+  ) +
+  coord_cartesian(xlim = c(1.2, NA), clip = "off") +
+  coord_flip() +
+  theme_minimal()
+```
+
+## 2.5 Add colors to rain cloud plot 
+
+A final challenge is adding color to the rain cloud plot which indicates the `sex` of the penguins. Do this for the layer that defines the density (`stat_halfeye()`) and the layer that defines the points (`geom_point()`).  
+
+💡 *Attention! The gender of some penguins has not been recorded. You have to filter these observations BEFORE creating the histogram. A piece of code has already been included to do so. That code now has a `#` in front of it. Remove that `#` so the code will be executed.*
+
+```{r}
+#| echo: true
+
+penguins %>% filter(!is.na(sex)) %>%
+  ggplot( 
+       aes(x = species, y = bill_length_mm)) + 
+  stat_halfeye(
+    ## Specify that color and fill of the density plots
+    ## should depend on the variable `sex`
+    aes(color = sex, fill = sex),
+    adjust = .5, 
+    width = .6, 
+    .width = 0, 
+    justification = -.2, 
+    point_colour = NA
+  ) + 
+  geom_boxplot(
+    width = .15, 
+    outlier.shape = NA
+  ) +
+  geom_point(
+    ## Specify that color and fill of the points
+    ## should depend on the variable `sex`
+    aes(color = sex),
+    size = 1.3,
+    alpha = .3,
+    position = position_jitter(
+      seed = 1, width = .1
+  )) +
+  ## Specify "fill" colors 
+  scale_fill_manual(
+      values = c("#F8B7CD", "#67A3D9")
+  ) +
+  ## Specify colors 
+  scale_color_manual(
+      values = c("#F8B7CD", "#67A3D9")
+  ) +
+  labs(
+    title = "Palmer penguins",
+    subtitle = "Distribution of bill length by species",
+    x = "",
+    y = "Bill length"
+  ) +
+  coord_cartesian(xlim = c(1.2, NA), clip = "off") +
+  coord_flip() +
+  theme_minimal()
+```
+
+# Part 3: Visualising more than one variable
+
+## 3.1 Basic scatterplot  
+
+Create a simple scatterplot with bill length on the x-axis (`bill_length_mm`) and bill depth (`bill_depth_mm`) on the y-axis.  Save this plot as an object with the name `P1` and print it.
+
+💡 *Take a closer look at the scatterplot. What does it tell about the relationship between both variables?*
+
+```{r}
+#| echo: true
+
+P1 <- penguins %>%
+  ggplot(
+    aes(
+      x = bill_length_mm,
+      y = bill_depth_mm)
+  ) +
+  geom_point()
+
+P1
+```
+
+## 3.2 Add linear trend line  
+
+In 3.1 you created a scatterplot of the relationship between bill length and bill depth . (You saved the plot as the object `P1`.) Add a linear trend line to this scatterplot using  `geom_smooth(method = "lm")`. Save that plot as the object `P2` and print it.
+
+```{r}
+#| echo: true
+
+P2 <- P1 + geom_smooth(method = "lm")
+
+P2
+```
+
+## 3.3  Add colors  
+
+Explore the data in more detail by adding colors to the points and the trend line that depend on the variable `species`. To do this, restart coding (do not continue building on `P1` and `P2`).
+
+Apply a nice(r) theme to this new plot and add appropriate labels and titles to the scatterplot.
+
+```{r}
+#| echo: true
+
+penguins %>%
+  ggplot(
+    aes(
+      x = bill_length_mm,
+      y = bill_depth_mm,
+      color = species)
+  ) +
+  geom_point() +
+  geom_smooth(method = "lm", se = F) +
+  theme_minimal() +
+  labs(
+    title = "Palmer penguins",
+    subtitle = "Relation between bill length and bill depth",
+    x = "Bill length (mm)",
+    y = "Bill depth (mm)")
+```
+
+## 3.4  Grouped barplot (counts)  
+
+Create a barplot that represents the relation between `species` and `sex`. The variable `species` should be mapped to the x-axis. Make sure that the bars are stacked upon one another and that counts are shown. Specify the "fill"-colors of the bars by using `scale_fill_brewer(type = "qual", palette = 1)`. Play around with the palettes and pick the one you like the most.
+
+💡 *Attention! The gender of some penguins has not been recorded. You have to filter these observations BEFORE creating the histogram. A piece of code has already been included to do so. That code now has a `#` in front of it. Remove that `#` so the code will be executed.*
+
+```{r}
+#| echo: true
+
+penguins %>% filter(!is.na(sex)) %>%
+  ggplot(aes(x = species,
+             fill = sex)) +
+  geom_bar(
+    position = position_stack()
+    ) +
+  scale_fill_brewer(type = "qual", palette = 1) + 
+  theme_minimal()
+```
+
+## 3.5 Grouped barplot (percentages)  
+ 
+Reuse the code you wrote in 3.4 to create the same barplot that shows percentages (instead of counts). Style the bar plot using all the ggplot-functions and arguments you learned. If your barplot is finished, save it as the object (`my_barplot`).
+
+```{r}
+#| echo: true
+
+my_barplot <- penguins %>% filter(!is.na(sex)) %>%
+  ggplot(aes(x = species,
+             fill = sex)) +
+  geom_bar(
+    position = position_fill()
+    ) +
+  scale_fill_brewer(type = "qual", palette = 1) + 
+  theme_minimal() +
+  scale_x_discrete(position = "top") +
+  scale_y_continuous(breaks = .5) + 
+  labs(
+    title = "Palmer penguins",
+    subtitle = "Distribution of penguin species by sex",
+    fill = "Species"
+  ) +
+  coord_cartesian(expand = FALSE) +
+  theme_minimal() + 
+  theme(plot.title = element_text(size = 20, face = "bold"),
+        plot.subtitle = element_text(size = 16, face = "italic"),
+        axis.title = element_blank(),
+        axis.text.x = element_text(size = 14, face = "bold"),
+        legend.title = element_text(face = "bold"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank())
+```
+
+## 3.6  Save your plot!  
+
+Often you want to save your plot (to use it in an article or a presentation). Saving a plot is easy in ggplot.
+
+Execute the code you find in the box below to save your plot. (First remove all the `#`!)  To find your saved plot, go the the folder 'Saved_figures' (sub folder of 'Exercise3_ggplot2'). 
+
+```{r}
+#| echo: true
+
+ggsave(my_barplot,
+       file = "Saved_figures/my_barplot.png",
+       width = 16,
+       height = 12,
+       units = "cm",
+       bg = "white") # color of background
+```
+
+# Final visualisation challenge  
+
+Does this figure looks familiar to you?  
+
+```{r}
+#| echo: false
+#| out-width: "40%"
+#| out-height: "40%"
+
+knitr::include_graphics("img/visualisation_challenge.png")
+```
+
+Try to recreate it and make it more informative... (Think about colors, labels of the values on the x-axis, ...) Don't forget to first import the 'Friends data'.
+
+```{r}
+#| echo: true
+#| message: false
+
+# There are many solutions to this task.
+# Below, I introduce mine (while also demonstrating some code of ggplot-extensions).
+# Don't forget to install these packages first
+
+## Load additional packages
+library(here)
+library(haven)
+library(ggtext)
+library(geomtextpath)
+
+## Read SPSS-data into RStudio
+Friends <- read_sav(here("Data", "Friends.sav"))
+
+Friends %>%
+  ## Recode variables to make labels more meaningful
+  mutate(Occassion = factor(occassion, 
+                            levels = c(1:3),
+                            labels = c("\nBefore\n experiment",  #\n adds a break
+                                       "\nAfter 12 weeks", 
+                                       "\nLast week")),
+         Condition = factor(condition, 
+                            levels = c(1:3),
+                            labels = c("English subtitles",
+                                       "Spanish subtitles",
+                                       "No subtitles")),
+         ## Convert the variable 'student' to a factor
+         Student = factor(student)) %>%
+  ## Group data by 'Occassion'
+  group_by(Occassion) %>%
+  ## Calculate mean across all students per occassion
+  summarise(across(c(Condition, Student, fluency)),
+            mean_fluency = mean(fluency)) %>%
+  ## Ungroup data (or you might get into trouble when plotting)
+  ungroup() %>%
+  ggplot(aes(x = Occassion, y = fluency, group = Student)) +
+  geom_line(aes(color = Condition), alpha = .5) +
+  ## Add vertical dashed line at week 12
+  geom_vline(aes(xintercept = "\nAfter 12 weeks"), 
+             color = "grey90", size = .3, linetype = "dashed") +
+  ## Add a labeled line using geom_textline (of package geomtextpath)
+  geom_textline(aes(x = Occassion, y = mean_fluency,
+                    label = "Average fluency across all participants"), 
+                hjust = .02, vjust = -.5, fontface = "plain", size = 3) +
+  ## Add labels and style the text using html-code (requires package ggtext)
+  labs(title = "Fluency<sup>*</sup> in English of Spanish native speakers increased when watching one Friends episode per week especially when <span style = 'color:#E41A1C;'>English</span style> or <span style = 'color:#377EB8;'>Spanish</span style> subtitles were provided.",
+       caption = "<sup>*</sup>Fluency was measured before the experiment, after 12 weeks and at the end of the experiment (week 26). It is measured using the number of colloquial words and expressions students used during a free conversation.",
+       y = "Fluency in English") +
+  scale_x_discrete(position = "top", expand = c(0,0.1)) +
+  scale_color_manual(values = c("#E41A1C", "#377EB8", "grey")) +
+  theme_minimal() +
+  theme(## element_textbox_simple' is used to render html-code
+        plot.title = element_textbox_simple(face = "bold", lineheight = .9),
+        plot.title.position = "plot",
+        plot.caption = element_textbox_simple(face = "italic", width = unit(15, "cm"),
+                                              margin = margin(1,0,0,0, "cm"), 
+                                              color = "grey"),
+        plot.caption.position = "plot",
+        axis.text.x = element_text(size = 10),
+        axis.title.x = element_blank(),
+        axis.title.y = element_text(face = "bold"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.major.y = element_line(size = .6),
+        legend.position = "none")
+
+```
+
+If you like this challenge, have a look at [#tidytuesday project](https://github.com/rfordatascience/tidytuesday). This is a project of the R community that releases a raw data set each Tuesday. This data set can be used to practise data wrangling and visualisation skills. Many participants share the results of their coding fun on social media and/or Github (the code itself).   

@@ -1,0 +1,82 @@
+---
+title: "TestFile"
+author: "Sven"
+format: 
+  html:
+    theme: journal 
+    toc: true
+    code-fold: true
+    code-summary: "Code please!"
+bibliography: references.bib
+---
+
+## Test document
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+
+```
+
+Let's insert some reference here [@admisc]
+
+::: callout-tip
+## This is a tip!
+
+Use callout boxes to highlight important messages for your readers...
+:::
+
+::: panel-tabset
+## Task
+
+Peter has a challenging task. He wants to know the square root of the number 16000. Help him to do this calculation making use of your `R` skills!
+
+## Solution
+
+```{r}
+sqrt(16000)
+```
+:::
+
+::: callout-warning
+## This is a warning
+
+Never forget coffee
+:::
+
+::: panel-tabset
+## Task
+
+oisdfihFHOih
+
+```{r}
+2+2
+```
+
+## Solution
+
+```{r}
+
+```
+
+## Tips
+:::
+
+### References

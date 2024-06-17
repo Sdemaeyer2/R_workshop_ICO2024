@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.592">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Excercise 1: Import and explore data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="Exercise1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Exercise1_files/libs/quarto-html/quarto.js"></script>
+<script src="Exercise1_files/libs/quarto-html/popper.min.js"></script>
+<script src="Exercise1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Exercise1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Exercise1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Exercise1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Exercise1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Exercise1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Exercise1_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Excercise 1: Import and explore data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>In this first exercise you will have to complete the first cycles of a typical research flow: import a dataset from an external file (an SPSS dataset) and do some first rough data explorations.</p>
+<p>Before we set you in action, we will give a very short introduction on the research that generated the dataset.</p>
+<section id="the-friends-study" class="level2">
+<h2 class="anchored" data-anchor-id="the-friends-study">The Friends Study</h2>
+<p>The data we will use for this exercise is a simulated dataset, but the data are partially inspired by a study we conducted in Antwerp in cooperation with the Tarragona University (<a href="https://d1wqtxts1xzle7.cloudfront.net/39743353/Frumuselu_et_al_2015_television_series_inside_the_EFL_classroom-with-cover-page-v2.pdf?Expires=1668703076&amp;Signature=WQvUMafz0MLPTYUTm3dAX4HfepsqUznC2NCHIPVOTuw2ZGLUSgFdxEe6x-VhZrOA39C8qSrMS3qa8QWd2T4Jw0GasZVF9ddU6YJAVGvdOpOYBXY2nCuC1kvcEaJk91IeE0HGm~CP6d4CqJzrKQJ-iYhaGWjNr48PghBhOEKwFJ2Rs7TyZDriqq071TNAxOsT59DcHg7nxUQgnxAp7St6QKwlySf0ULbuowEishhWzJ2txQnchd8TTzqb5PJ2h2MfPB8hlp6PJpHfV7x6FFh6uB6yUaw7u6yffacMV1xElEBPJaHPrz4FSw41IZwOUq4YvWl-6MiZno44DO6CPvHXdg__&amp;Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA">click here to go to the original paper</a>).</p>
+<p>The general research question in the dataset was on the impact of <em>subtitling</em> on the language development. More specifically we were interested in whether the use of English subtitling in tv-series impacted the knowledge of the knowledge of colloquial English of Spanish mother tongue speakers. In Spain (as in many other countries) the default is to dub the original spoken word in Spanish. In some other countries (like the Netherlands and the Flemish speaking part of Belgium) the default is the broadcast the original English spoken version of tv series and subtitle them in the official language of the country (e.g., Dutch). The hypothesis leading this research is that learning of English goes faster in the latter case (with the use of subtitles) than in the former case (dubbing).</p>
+<p>The dataset contains the data of an experimental study that was designed as follows. 36 students watched ‘Friends’ episodes during 26 weeks, one episode per week. The students were divided in 3 conditions: ‘English subtitled’, ‘Spanish subtitled’ and ‘not subtitled’. They were measured on their fluency in English on three occasions: before the experiment, after 12 weeks and after 26 weeks. The measure used in the study was a count of the number of colloquial words and expressions they used during a free conversation.</p>
+<p>In the dataset there are 4 variables:</p>
+<ul>
+<li><p>student (an ID for each student)</p></li>
+<li><p>occasion (1 = “at the start”; 2 = “after 12 weeks”; 3 = “after 26 weeks”)</p></li>
+<li><p>condition (1 = “English subtitled”; 2 = “Spanish subtitled”; 3 = “not subtitled’)</p></li>
+</ul>
+<div id="fig-friends" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="img/visualisation_challenge.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 1: Visualisation of the data of the Friends study</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="part-1-create-a-project" class="level1">
+<h1>Part 1: Create a project</h1>
+<p>To make working in <code>R</code> and <code>RStudio</code> easier we introduced working with projects in <code>RStudio</code>. Let’s apply this for the exercises. Copy the folder called <strong>Exercises</strong> to a place on your computer and create a project in <code>RStudio</code> that uses this folder as the home directory.</p>
+</section>
+<section id="part-2-import-the-data" class="level1">
+<h1>Part 2: Import the data</h1>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">2.1</h2>
+<p>Before you can even start, you have to think about the necessary <em>R packages</em> for your tasks ahead. The data that we will use are stored in SPSS format.</p>
+<p><em>Use the R code chunk below to create code that activates the necessary packages to load the dataset.</em></p>
+<div class="cell">
+
+</div>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">2.2</h2>
+<p>Once packages are loaded you are ready to import the dataset that is stored in the folder <strong>Data</strong> . The dataset is an SPSS file named <strong>Friends.sav</strong>.</p>
+<p><em>Use the R code chunk below to import the SPSS data and store it in an object with the name Friends.</em></p>
+<div class="cell">
+
+</div>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">2.3</h2>
+<p>Check whether you succeeded in importing the dataset. A fast way to check this is to run a <code>summary()</code> command for the datafile.</p>
+<p><em>Use the R code chunk below to run a summary( ) for the object called Friends.</em></p>
+<div class="cell">
+
+</div>
+</section>
+</section>
+<section id="part-3-changing-the-quarto-document" class="level1">
+<h1>Part 3: changing the Quarto document</h1>
+<p>Now that we have a basic Quarto document that can be used to further explore the dataset we can also test our skills and the possibilities of formatting the resulting html-file.</p>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3">3.1</h2>
+<p>A first change that we want to make to the document is to have it include a table of contents so that we have an overview of all the titles in the document.</p>
+<p><em>Change the YAML of the document to insert a table of content, test whether it worked by rendering the document.</em></p>
+</section>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4">3.2</h2>
+<p>Now, let’s change try something else. Insert a Tabset that consists out of two tabs. A tab called “Code” and a tab called “Result”. Put the code of exercise 2.3 in the tab called “Code” (but make sure it is not executed in that tab. In the tab “Result” you only want to print the output (the result) of running the code for exercise 2.3.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

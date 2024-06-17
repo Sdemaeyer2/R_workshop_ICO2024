@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.592">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Excercise 1: Import and explore data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="Exercises_dplyr_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Exercises_dplyr_files/libs/quarto-html/quarto.js"></script>
+<script src="Exercises_dplyr_files/libs/quarto-html/popper.min.js"></script>
+<script src="Exercises_dplyr_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Exercises_dplyr_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Exercises_dplyr_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Exercises_dplyr_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Exercises_dplyr_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Exercises_dplyr_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Exercises_dplyr_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#the-riasec-data" id="toc-the-riasec-data" class="nav-link" data-scroll-target="#the-riasec-data">The RIASEC data</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a></li>
+  </ul></li>
+  <li><a href="#import-the-data" id="toc-import-the-data" class="nav-link" data-scroll-target="#import-the-data">Import the data</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">1.1</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">1.2</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">1.3</a></li>
+  </ul></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a>
+  <ul class="collapse">
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">2.1</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">2.2</a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5">2.3</a></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6">2.4</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Excercise 1: Import and explore data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1 page-columns page-full">
+<h1>Introduction</h1>
+<p>Time to apply your skills in <code>dplyr</code>!</p>
+<section id="the-riasec-data" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="the-riasec-data">The RIASEC data</h2>
+<div class="page-columns page-full"><p>In what follows you will perform a set of tasks on a new dataset, the RIASEC data. This dataset <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is placed in the folder called Data. To be short, the data contains answers of a large set of respondents from different countries on their interests according to a the RIASEC model (see <a href="#fig-RIASEC">Figure&nbsp;1</a>):</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;In the same folder you can find the file called codebook_RIASEC.txt where more info on the dataset can be found.</p></li></div></div>
+<div id="fig-RIASEC" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="img/RIASEC-Hexagon-5.png" class="img-fluid figure-img" style="width:65.0%"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption margin-caption">Figure 1: The RIASEC model</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<p>You will find empty code blocks to write the necessary code in <code>R</code>.</p>
+<p>You can run the code blocks to see whether you succeeded.</p>
+<p>If it works: great!</p>
+<p>If not, have a look at the solution (as a .qmd file or the .html file): <code>Exercises_dplyr_solution.qmd</code> or <code>Exercises_dplyr_solution.html</code> !</p>
+<p>Time for some action!</p>
+</section>
+</section>
+<section id="import-the-data" class="level1">
+<h1>Import the data</h1>
+<p>Of course, a first step is importing the dataset.</p>
+<p>Create a project for the Exercises folder if you haven’t yet.</p>
+<p>The dataset is an excel file called: <code>RIASEC.xlsx</code>.</p>
+<p><em>Insert the necessary code to import the dataset and create a tibble for that dataset.</em></p>
+<p>💡 <em>Don’t forget to load the necessary packages…</em></p>
+<div class="cell">
+
+</div>
+</section>
+<section id="exercise-1" class="level1">
+<h1>Exercise 1</h1>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">1.1</h2>
+<p>Create a tibble with only the data for Belgian respondents. The specific country code for Belgium is “BE” (for the variable <code>country</code>). Name this tibble <code>RIASEC_BE</code>. As a check you can have a view in the <code>Environment</code> where you should see this extra dataset. The number of observations should equal 416.</p>
+<div class="cell">
+
+</div>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">1.2</h2>
+<p>Continue with RIASEC_BE and select only the following variables:</p>
+<ul>
+<li>age</li>
+<li>gender</li>
+<li>education</li>
+<li>urban</li>
+<li>familysize</li>
+<li>Realistic</li>
+<li>Investigative</li>
+<li>Artistic</li>
+<li>Social</li>
+<li>Enterprising</li>
+<li>Conventional</li>
+</ul>
+<p>Overwrite the RIASEC_BE tibble with this reduced tibble.</p>
+<p>💡 <em>IF you make an error then you have to go back to 1.1 to create the full RIASEC_BE tibble again before you can execute 1.2</em></p>
+<div class="cell">
+
+</div>
+<p>Have a look again to the <code>Environment</code>. You should see that <code>RIASEC_BE</code> only contains 11 variables.</p>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">1.3</h2>
+<p>You could also integrate both steps (1.1 and 1.2) in a single codeblock. Create code to go from the <code>RIASEC</code> tibble to the <code>RIASEC_BE</code> with only observations from Belgian respondents for the 11 variables 11 from 1.2 in one chain of code.</p>
+<div class="cell">
+
+</div>
+</section>
+</section>
+<section id="exercise-2" class="level1">
+<h1>Exercise 2</h1>
+<p>We continue with <code>RIASEC_BE</code> and we will calculate the <strong>average</strong> and the <strong>standard deviation</strong> for both men and women on the 6 scales of the RIASEC model (Realistic, Investigative, Artistic, Social, Enterprising, Conventional).</p>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3">2.1</h2>
+<p>Before we start, we will make a new variable called <code>Gender2</code> in the<code>RIASEC_BE</code> tibble where we only keep 3 codes: <code>male</code>, <code>female</code> en <code>other</code>.</p>
+<p>💡 <em>When recoding the variable <code>gender</code> it is good to know that code 1 was given for men, code 2 for women and code 3 for other identities</em></p>
+<div class="cell">
+
+</div>
+</section>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4">2.2</h2>
+<p>Time to calculate the averages for each of the three categories of the variable <code>Gender2</code>. Do this for each of the 6 variables of the RIASEC model. Before we can do this we have to filter out the observations with score 0 for the variable <code>gender</code>. Let the averages be printed in this report.</p>
+<p>💡 <em>It’s your task to come up with a new name for the variable that contains the averages. It is always wise to come up with meaningful names (e.g., Realistic_aver). Don’t forget you can make use of the<code>mean()</code> function to calculate averages.</em></p>
+<div class="cell">
+
+</div>
+</section>
+<section id="section-5" class="level2">
+<h2 class="anchored" data-anchor-id="section-5">2.3</h2>
+<p>If the previous code runs ok, then you will notice that the output is a tibble as well. Click on <code>Render</code> and you will see that the result in the .html file doesn’t show all the averages. This is rather annoying if you want to have a table showing all the averages in your report.</p>
+<p>Luckily we have a solution. We can make use of the package <code>kableExtra</code>. In the next code block do the following:</p>
+<ul>
+<li>install the package <code>kableExtra</code> (or use the menu in the tab <code>Packages</code>)</li>
+<li>laad the package <code>kableExtra</code> making use of the <code>library()</code> function</li>
+<li>copy your code from 2.2 to calculate the averages</li>
+<li>typ at the end <code>%&gt;% kable()</code></li>
+<li>let’s click on <code>Render</code> again and compare the output with the output of 2.2</li>
+</ul>
+<div class="cell">
+
+</div>
+</section>
+<section id="section-6" class="level2">
+<h2 class="anchored" data-anchor-id="section-6">2.4</h2>
+<p>Now we can do the same to calculate standard deviations for each of the categories of <code>Gender2</code>. So bring on your copy-paste skills. The function in <code>R</code> to calculate a standard deviation is <code>sd()</code>.</p>
+<div class="cell">
+
+</div>
+</section>
+</section>
+
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="Exercises_dplyr_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

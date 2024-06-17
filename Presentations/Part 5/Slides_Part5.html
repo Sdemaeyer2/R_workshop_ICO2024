@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>INPUT - OUTPUT Workshop R &amp; RStudio</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.17/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: title-slide, center, middle
+
+&lt;link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous"&gt;
+
+
+
+
+
+
+&lt;style&gt;
+
+.center2 {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.rcorners1 {
+  margin: auto;
+  border-radius: 25px;
+  background: #ada500;
+  padding: 10px;
+#  width: 50%;
+}
+&lt;/style&gt;
+
+&lt;style type="text/css"&gt;
+.right-column{
+  padding-top: 0;
+}
+
+.remark-code, .remark-inline-code { font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
+                                    font-size: 90%;
+                                  }
+
+&lt;/style&gt;
+
+
+&lt;div class="my-logo-left"&gt; &lt;img src="img/UA-eng-hor-1-RGB.jpg" width="110%"/&gt; &lt;/div&gt;
+&lt;div class="my-logo-right"&gt; &lt;img src="img/ICO-logo.png" width="90%"/&gt; &lt;/div&gt;
+
+
+# ICO Workshop R &amp; RStudio
+.font160[
+.SW-greenD[Part 5]
+]
+.font120[
+.SW-greenD[*Statistical analyses in*] .UA-red[*`R`*]
+]
+Sven De Maeyer &amp; Tine van Daal
+
+.font80[
+.UA-red[
+23th - 25th November, 2022
+]
+]
+
+---
+class: inverse-green, left
+
+# Overview
+
+.center2[
+
+- Correlation --- ([Click here](#part1))
+- t-test --- ([Click here](#part2))
+- Linear regression --- ([Click here](#part3))
+- Other analyses --- ([Click here](#part4))
+]
+
+---
+class: inverse-green, center, middle
+name: part1
+
+# 1. Correlation
+
+---
+
+## The .UA-red[`cor( )`] function
+
+.pull-left[
+&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-2-1.png" width="360" /&gt;
+]
+
+.pull-right[
+.UA-red[Let op voor NA's!!]
+.footnotesize[
+
+```r
+library(palmerpenguins)
+data("penguins")
+
+cor(penguins$flipper_length_mm, 
+    penguins$body_mass_g)
+```
+
+```
+## [1] NA
+```
+
+```r
+cor(penguins$flipper_length_mm, 
+    penguins$body_mass_g, 
+   use = "complete.obs")
+```
+
+```
+## [1] 0.8712018
+```
+]
+]
+
+---
+
+## Statistical tests with .UA-red[`cor.test( )`]
+
+
+```r
+cor.test(penguins$flipper_length_mm, 
+        penguins$body_mass_g)
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  penguins$flipper_length_mm and penguins$body_mass_g
+## t = 32.722, df = 340, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.843041 0.894599
+## sample estimates:
+##       cor 
+## 0.8712018
+```
+
+---
+&lt;div class="my-logo-right"&gt; &lt;img src="broom_logo.png" width="100%"/&gt; &lt;/div&gt;
+
+## The .UA-red[`broom`]  package
+
+- Package in `tidyverse` 
+
+- Creates .SW-greenD[**tibbles**] based on results from a statistical analysis!
+
+.UA-red[`tidy()`]: output from an analysis as a tibble
+
+
+```r
+library(broom)
+C &lt;- cor.test(penguins$flipper_length_mm, 
+        penguins$body_mass_g)
+
+tidy(C)
+```
+
+```
+## # A tibble: 1 × 8
+##   estimate statistic   p.value parameter conf.low conf.high method       alter…¹
+##      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;  
+## 1    0.871      32.7 4.37e-107       340    0.843     0.895 Pearson's p… two.si…
+## # … with abbreviated variable name ¹​alternative
+```
+
+---
+
+## Correlation between multiple variabeles
+
+
+```r
+penguins %&gt;% 
+  select(
+    bill_depth_mm,
+    bill_length_mm,
+    flipper_length_mm,
+    body_mass_g
+  ) %&gt;%
+  cor(use = "pairwise.complete.obs")
+```
+
+```
+##                   bill_depth_mm bill_length_mm flipper_length_mm body_mass_g
+## bill_depth_mm         1.0000000     -0.2350529        -0.5838512  -0.4719156
+## bill_length_mm       -0.2350529      1.0000000         0.6561813   0.5951098
+## flipper_length_mm    -0.5838512      0.6561813         1.0000000   0.8712018
+## body_mass_g          -0.4719156      0.5951098         0.8712018   1.0000000
+```
+
+---
+
+## Correlations between multiple variabeles visualized
+
+.pull-left[
+Package: .UA-red[`GGally`]
+
+Function: .UA-red[`ggpairs()`]
+
+Result: a ggplot object...
+
+.footnotesize[
+
+```r
+library(GGally)
+penguins %&gt;% 
+  select(
+    species,
+    bill_depth_mm,
+    bill_length_mm,
+    flipper_length_mm,
+    body_mass_g
+  ) %&gt;%
+  ggpairs(
+    columns = c(
+      "flipper_length_mm", "body_mass_g",
+      "bill_length_mm", "bill_depth_mm")
+    )
+```
+]
+]
+
+.pull-right[
+&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-8-1.png" width="504" /&gt;
+]
+
+---
+
+## Correlations between multiple variabeles visualized WITH COLOR!
+
+
+.pull-left[
+
+.footnotesize[
+
+```r
+penguins %&gt;% 
+  select(
+    species,
+    bill_depth_mm,
+    bill_length_mm,
+    flipper_length_mm,
+    body_mass_g
+  ) %&gt;%
+  ggpairs(
+    aes(color = species),
+    columns = c(
+      "flipper_length_mm", "body_mass_g",
+      "bill_length_mm", "bill_depth_mm")) +
+  scale_colour_manual(
+    values = c("darkorange","purple","cyan4")) +
+  scale_fill_manual(
+    values = c("darkorange","purple","cyan4"))
+```
+]
+]
+
+.pull-right[
+&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-10-1.png" width="504" /&gt;
+]
+
+---
+class: inverse-green, center, middle
+name: part2
+
+# 2. t-test
+
+---
+## First some descriptives
+
+.pull-left[
+Compare Gentoo with Adelie penguins on `body_mass_g`
+
+.footnotesize[
+
+```r
+library(kableExtra)
+penguins %&gt;% 
+  select(
+    species,
+    body_mass_g
+  ) %&gt;%
+  filter(
+    species == 'Adelie' | species == 'Gentoo'
+  ) %&gt;%
+  group_by(species) %&gt;%
+  summarize(
+    count = n(),
+    mean = mean(body_mass_g, na.rm = TRUE),
+    sd = sd(body_mass_g, na.rm = TRUE)
+  ) %&gt;%
+  kable()
+```
+]
+]
+
+.pull-right[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; species &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; count &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; mean &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; sd &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Adelie &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 152 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3700.662 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 458.5661 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Gentoo &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 124 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5076.016 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 504.1162 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
+## Create boxplots with `ggpubr` package
+
+.pull-left[
+.footnotesize[
+
+```r
+# install.packages(ggpubr)
+
+library(ggpubr)
+penguins %&gt;% 
+  select(
+    species,
+    body_mass_g
+  ) %&gt;%
+  filter(
+    species == 'Adelie' | species == 'Gentoo'
+  ) %&gt;%
+  ggboxplot(
+    x = "species", y = "body_mass_g", 
+          color = "species", palette = c("#00AFBB", "#E7B800"),
+        ylab = "Body Mass (g)", xlab = "Species")
+```
+]
+]
+
+.pull-right[
+&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-14-1.png" width="504" /&gt;
+]
+
+---
+## Checking the assumptions of equal variances with .UA-red[`var.test()`] function
+
+.pull-left[
+.footnotesize[
+
+```r
+p &lt;- penguins %&gt;% 
+  select(
+    species,
+    body_mass_g
+  ) %&gt;%
+  filter(
+    species == 'Adelie' | species == 'Gentoo'
+  )
+
+var.test(body_mass_g ~ species, data= p)
+```
+]
+]
+
+.pull-right[
+
+```
+## 
+## 	F test to compare two variances
+## 
+## data:  body_mass_g by species
+## F = 0.82745, num df = 150, denom df = 122, p-value = 0.2691
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##  0.5875588 1.1583164
+## sample estimates:
+## ratio of variances 
+##          0.8274515
+```
+]
+
+---
+## Perform unpaired t-test with .UA-red[`t.test()`] function
+
+.pull-left[
+.footnotesize[
+
+```r
+p &lt;- penguins %&gt;% 
+  select(
+    species,
+    body_mass_g
+  ) %&gt;%
+  filter(
+    species == 'Adelie' | species == 'Gentoo'
+  )
+
+t.test(body_mass_g ~ species, data= p, var.equal = TRUE)
+```
+]
+]
+
+.pull-right[
+
+```
+## 
+## 	Two Sample t-test
+## 
+## data:  body_mass_g by species
+## t = -23.614, df = 272, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means between group Adelie and group Gentoo is not equal to 0
+## 95 percent confidence interval:
+##  -1490.021 -1260.687
+## sample estimates:
+## mean in group Adelie mean in group Gentoo 
+##             3700.662             5076.016
+```
+]
+
+
+---
+class: inverse-green, center, middle
+name: part3
+
+# 3. Linear regression
+
+---
+
+## .UA-red[`lm()`]
+
+&lt;img src="lm_formula.png" width="50%" height="50%" /&gt;
+
+
+
+```r
+Model1 &lt;- lm(flipper_length_mm ~ body_mass_g, 
+             data = penguins)
+```
+
+
+---
+
+## Model results with .UA-red[`summary()`]
+
+.footnotesize[
+
+```r
+summary(Model1)
+```
+
+```
+## 
+## Call:
+## lm(formula = flipper_length_mm ~ body_mass_g, data = penguins)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -23.7626  -4.9138   0.9891   5.1166  16.6392 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 1.367e+02  1.997e+00   68.47   &lt;2e-16 ***
+## body_mass_g 1.528e-02  4.668e-04   32.72   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 6.913 on 340 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.759,	Adjusted R-squared:  0.7583 
+## F-statistic:  1071 on 1 and 340 DF,  p-value: &lt; 2.2e-16
+```
+]
+
+---
+&lt;div class="my-logo-right"&gt; &lt;img src="broom_logo.png" width="100%"/&gt; &lt;/div&gt;
+
+## The .UA-red[`broom`]  package
+
+Function: .UA-red[`tidy()`]
+
+Result: tidy dataset with information on **parameter estimates**
+
+
+```r
+tidy(Model1, 
+     conf.int = TRUE,
+     conf.level = .90)
+```
+
+```
+## # A tibble: 2 × 7
+##   term        estimate std.error statistic   p.value conf.low conf.high
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept) 137.      2.00          68.5 5.71e-201 133.      140.    
+## 2 body_mass_g   0.0153  0.000467      32.7 4.37e-107   0.0145    0.0160
+```
+
+---
+&lt;div class="my-logo-right"&gt; &lt;img src="broom_logo.png" width="100%"/&gt; &lt;/div&gt;
+
+## The .UA-red[`broom`]  package + .UA-red[`kable()`]
+
+
+
+```r
+tidy(Model1, 
+     conf.int = TRUE,
+     conf.level = .90) %&gt;%
+  kable()
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; term &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; estimate &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; std.error &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; statistic &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p.value &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; conf.low &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; conf.high &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 136.7295593 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.9968354 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 68.47312 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 133.4360836 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 140.0230350 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; body_mass_g &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0152759 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0004668 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32.72223 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0145059 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0160459 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+&lt;div class="my-logo-right"&gt; &lt;img src="broom_logo.png" width="100%"/&gt; &lt;/div&gt;
+
+## The .UA-red[`broom`] package
+
+Function: .UA-red[`glance()`]
+
+Result: tidy dataset with information on **model fit**
+
+
+```r
+glance(Model1)
+```
+
+```
+## # A tibble: 1 × 12
+##   r.squared adj.r.squ…¹ sigma stati…²   p.value    df logLik   AIC   BIC devia…³
+##       &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1     0.759       0.758  6.91   1071. 4.37e-107     1 -1146. 2297. 2309.  16250.
+## # … with 2 more variables: df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated
+## #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance
+```
+
+---
+&lt;div class="my-logo-right"&gt; &lt;img src="broom_logo.png" width="100%"/&gt; &lt;/div&gt;
+
+## The .UA-red[`broom`] package
+
+Function: .UA-red[`augment()`]
+
+Result: add information to the dataset based on the model like **fitted values**, **residuals**, ...
+
+
+```r
+augment(Model1)
+```
+
+```
+## # A tibble: 342 × 9
+##    .rownames flipper_len…¹ body_…² .fitted .resid    .hat .sigma .cooksd .std.…³
+##    &lt;chr&gt;             &lt;int&gt;   &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 1                   181    3750    194. -13.0  0.00385   6.89 6.88e-3  -1.89 
+##  2 2                   186    3800    195.  -8.78 0.00366   6.91 2.97e-3  -1.27 
+##  3 3                   195    3250    186.   8.62 0.00705   6.91 5.57e-3   1.25 
+##  4 5                   193    3450    189.   3.57 0.00550   6.92 7.41e-4   0.518
+##  5 6                   190    3650    192.  -2.49 0.00431   6.92 2.81e-4  -0.360
+##  6 7                   181    3625    192. -11.1  0.00444   6.90 5.78e-3  -1.61 
+##  7 8                   195    4675    208. -13.1  0.00395   6.89 7.19e-3  -1.91 
+##  8 9                   193    3475    190.   3.19 0.00533   6.92 5.73e-4   0.462
+##  9 10                  190    4250    202. -11.7  0.00293   6.89 4.19e-3  -1.69 
+## 10 11                  186    3300    187.  -1.14 0.00663   6.92 9.14e-5  -0.165
+## # … with 332 more rows, and abbreviated variable names ¹​flipper_length_mm,
+## #   ²​body_mass_g, ³​.std.resid
+```
+
+---
+&lt;div class="my-logo-right"&gt; &lt;img src="broom_logo.png" width="100%"/&gt; &lt;/div&gt;
+
+## The .UA-red[`broom`] package to check some assumptions
+
+Functions: .UA-red[`augment()`] + .UA-red[`geom_histogram()`]
+
+Result: Are the residuals normally distributed?
+
+.pull-left[
+
+```r
+augment(Model1) %&gt;% 
+  select(.resid) %&gt;% 
+  ggplot(
+    aes(
+      x = .resid
+    )
+  ) + 
+  geom_histogram() + 
+  theme_minimal() +
+  labs(
+    title = "Model1",
+    subtitle = "Distribution of residuals"
+  ) +
+  theme(plot.title.position = "plot")
+```
+]
+
+.pull-right[
+&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-27-1.png" width="288" style="display: block; margin: auto;" /&gt;
+]
+
+---
+&lt;div class="my-logo-right"&gt; &lt;img src="broom_logo.png" width="100%"/&gt; &lt;/div&gt;
+
+## The .UA-red[`broom`] package to check some assumptions
+
+Functions: .UA-red[`augment()`] + .UA-red[`geom_point()`]
+
+Resultaat: Homoscedasticity?
+
+.pull-left[
+
+```r
+augment(Model1) %&gt;% 
+  select(.fitted, .std.resid) %&gt;% 
+  ggplot(
+    aes(
+      x = .fitted,
+      y = .std.resid
+    )
+  ) + 
+  geom_point() + 
+  theme_minimal() +
+  labs(
+    title = "Model1",
+    subtitle = "Fitted values vs residuals"
+  ) + geom_hline(yintercept = 0) +
+  theme(plot.title.position = "plot")
+```
+]
+
+.pull-right[
+&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-29-1.png" width="288" style="display: block; margin: auto;" /&gt;
+]
+
+---
+&lt;div class="my-logo-right"&gt; &lt;img src="broom_logo.png" width="100%"/&gt; &lt;/div&gt;
+
+## .UA-red[`broom`] package to visualise model results
+
+Functions: .UA-red[`augment()`] + .UA-red[`geom_line()`]
+
+Result: Plot of the fitted regression model (the line)
+
+.pull-left[
+
+```r
+augment(Model1) %&gt;% 
+  select(.fitted, body_mass_g) %&gt;% 
+  ggplot(
+    aes(
+      x = body_mass_g,
+      y = .fitted
+    )
+  ) + 
+  geom_line() + 
+  theme_minimal() +
+  labs(
+    title = "Model1",
+    subtitle = "Fitted values based on body mass",
+    x = "body mass (g)",
+    y = "fitted values"
+  )  +
+  theme(plot.title.position = "plot")
+```
+]
+
+.pull-right[
+&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-31-1.png" width="288" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Multivariate regression
+
+.footnotesize[
+
+```r
+Model2 &lt;- lm(
+  flipper_length_mm ~ body_mass_g + sex + species,
+  data = penguins
+)
+
+tidy(Model2) %&gt;%
+  kable()
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; term &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; estimate &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; std.error &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; statistic &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p.value &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 164.5887169 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.1836146 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 51.698694 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; body_mass_g &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0065499 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0009308 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.036742 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; sexmale &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.4777215 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.8540581 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.901116 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0039696 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; speciesChinstrap &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.5444400 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.7852051 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.061136 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; speciesGentoo &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.0213174 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.4424942 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.493165 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
+## Model comparison
+
+Model fit of multiple models:
+
+
+```r
+M1_info &lt;- glance(Model1) %&gt;% select(r.squared, AIC, BIC)
+M2_info &lt;- glance(Model2) %&gt;% select(r.squared, AIC, BIC)
+
+M1_info %&gt;% rbind(M2_info) %&gt;% kable()
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; r.squared &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; AIC &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; BIC &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.7589925 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2297.035 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2308.540 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0.8562944 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2068.357 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2091.206 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## Visualize this model
+
+.pull-left[
+.footnotesize[
+
+```r
+augment(Model2) %&gt;%
+  ggplot() +
+  geom_point(
+    aes(x = body_mass_g,
+        y = flipper_length_mm,
+        color = sex),
+    alpha = .6
+  ) +
+  geom_line(
+    aes(
+      x = body_mass_g,
+      y = .fitted,
+      color = sex,
+    ),
+    size = 1.5
+  ) +
+  facet_wrap(.~species) +
+  theme_minimal()
+```
+]
+]
+
+.pull-right[
+&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-35-1.png" width="504" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Some cool stuff with the .UA-red[`sjPlot`] package
+
+For instance, create an html-table with the estimates of two models: `Model1` &amp; `Model2`
+
+Function: .UA-red[`tab_model()`]
+
+.footnote[
+
+```r
+library(sjPlot)
+tab_model(Model1, Model2)
+```
+
+&lt;table style="border-collapse:collapse; border:none;"&gt;
+&lt;tr&gt;
+&lt;th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; "&gt;&amp;nbsp;&lt;/th&gt;
+&lt;th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; "&gt;flipper length mm&lt;/th&gt;
+&lt;th colspan="3" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; "&gt;flipper length mm&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; "&gt;Predictors&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;Estimates&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;CI&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;p&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;Estimates&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  "&gt;CI&lt;/td&gt;
+&lt;td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7"&gt;p&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;(Intercept)&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;136.73&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;132.80&amp;nbsp;&amp;ndash;&amp;nbsp;140.66&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;strong&gt;&amp;lt;0.001&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;164.59&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;158.33&amp;nbsp;&amp;ndash;&amp;nbsp;170.85&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"&gt;&lt;strong&gt;&amp;lt;0.001&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;body mass g&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.02&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.01&amp;nbsp;&amp;ndash;&amp;nbsp;0.02&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;strong&gt;&amp;lt;0.001&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.01&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.00&amp;nbsp;&amp;ndash;&amp;nbsp;0.01&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"&gt;&lt;strong&gt;&amp;lt;0.001&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;sex [male]&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;2.48&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;0.80&amp;nbsp;&amp;ndash;&amp;nbsp;4.16&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"&gt;&lt;strong&gt;0.004&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;species [Chinstrap]&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;5.54&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;4.00&amp;nbsp;&amp;ndash;&amp;nbsp;7.09&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"&gt;&lt;strong&gt;&amp;lt;0.001&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; "&gt;species [Gentoo]&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;18.02&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "&gt;15.18&amp;nbsp;&amp;ndash;&amp;nbsp;20.86&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"&gt;&lt;strong&gt;&amp;lt;0.001&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;"&gt;Observations&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3"&gt;342&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="3"&gt;333&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;"&gt;R&lt;sup&gt;2&lt;/sup&gt; / R&lt;sup&gt;2&lt;/sup&gt; adjusted&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3"&gt;0.759 / 0.758&lt;/td&gt;
+&lt;td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="3"&gt;0.856 / 0.855&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+]
+
+---
+## Some cool stuff with the .UA-red[`sjPlot`] package
+
+Create a plot of predicted values based on the effect of `body_mass_g`
+
+Function: .UA-red[plot_model()] with `type = "pred"` specifically to plot **predicted values**
+
+.footnotesize[
+
+```r
+plot_model(Model2, type = "pred", terms = "body_mass_g")
+```
+
+&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-37-1.png" width="504" /&gt;
+]
+
+---
+## Some cool stuff with the .UA-red[`sjPlot`] package
+
+Function: .UA-red[`plot_model()`] creates a **`ggplot` object**! So we can customize it!
+
+.footnotesize[
+
+```r
+plot_model(Model2, type = "pred", terms = "body_mass_g") +
+  theme_minimal()
+```
+
+&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-38-1.png" width="504" /&gt;
+]
+
+---
+## Some cool stuff with the .UA-red[`sjPlot`] package
+
+Create a plot of the different parameter estimates in the model
+
+Function: .UA-red[plot_model()] without a `type = ` argument
+
+.footnotesize[
+
+```r
+plot_model(Model2) +
+  theme_minimal()
+```
+
+&lt;img src="Slides_Part5_files/figure-html/unnamed-chunk-39-1.png" width="504" /&gt;
+
+]
+
+---
+name: part4
+## Other Statistical Modelling in R
+
+- Structural Equation Modelling: .UA-red[`lavaan`]
+
+- Multilevel analyses: .UA-red[`lme4`]
+
+- Cluster Analyses: .UA-red[`mclust`]
+
+- Factor Analyses (or PCA) &amp; reliability analyses (e.g., Cronbach's alpha): .UA-red[`psych` ]
+
+- Item Response Theory models: .UA-red[`ltm`] or .UA-red[`sirt`]
+
+- Bayesian analyses (using MCMC): .UA-red[`brms`]
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

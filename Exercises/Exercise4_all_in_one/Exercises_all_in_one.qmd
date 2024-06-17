@@ -1,0 +1,502 @@
+---
+title: "Solutions to integrated exercise"
+execute: 
+  chache: true
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-depth: 3
+    smooth-scroll: true
+    theme: sandstone
+    self-contained: true
+---
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+
+# Introduction
+
+During this workshop you have learned to import, manipulate, visualise
+and analyse data. Time to use all these skills and create a research
+report!
+
+This research report will focus upon the relation of motivation with
+math scores. We will use data that was collected in 2010 during a large
+project on the transition of secondary to higher education or the labour
+market. We followed almost 4000 students for two years and collected
+data during 5 waves. If you want to know more about the project, you can
+have a look at
+[this](https://www.sciencedirect.com/science/article/pii/S104160801500059X?casa_token=XAxx5GZKHCsAAAAA:B2Xt82w-rWRH6q2KocvVOTOJxIX3hxSGLfwnKZyh8_xUbUFDl7_HQZdvR8zwLTYuqElddNq-0rc)
+or
+[this](https://journals.sfu.ca/flr/index.php/journal/article/view/647)
+article. Today, we only use the data collected during the first two
+measurement waves. Students were in their final year of secondary
+education.
+
+The data set contains information on 15 variables:\
+- *ID_School*: ID of the school\
+- *ID_Class*: ID of the class\
+- *ID_Student*: ID of the student\
+- *Educ_level*: educational track of the studion [(1: general education,
+2: technical education, 3: vocational education, 4: arts
+education)]{style="font-size:10;"}\
+- *Gender*: gender of student (0: female, 1: male)\
+- *SES_language*: language indicator of social-economic status that was
+used by the government to indicate whether or not a student was at risk
+(0: does not apply, 1: applies)\
+- *SES_neighbourhood*: neighbourhood indicator of social-economic status
+that was used by the government to indicate whether or not a student was
+at risk (0: does not apply, 1: applies)\
+- *SES_educ_level*: education indicator of social-economic status that
+was used by the government to indicate whether or not a student was at
+risk (0: does not apply, 1: applies)\
+- *IQ_score*: raw score on a non-verbal IQ-test (min. score: 0, max.
+score: 40) - *Math_score*: raw score on a math test (problem-solving)
+(min. score: 0, max. score: 24)\
+- *Reading_score*: raw score on a reading comprehension test (min.
+score: 0, max. score: 24)\
+- *Autonomous_motivation*: autonomous motivation for studying (based on
+average score on 6 items, min. score: 0, max. score: 5)\
+- *Controlled_motivation*: controlled motivation for studying (based on
+average score on 6 items, min. score: 0, max. score: 5)\
+- *Amotivation*: amotivation for studying (based on average score on 3
+items, min. score: 0, max. score: 5)
+
+💡 *Don't forget to load the necessary packages: `tidyverse` and
+`here`.*
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+# 1. Import and clean data
+
+## 1.1 Import the data
+
+Import the data
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+## 1.2 Check data
+
+Check all variables:
+
+-   Are they correctly defined (numeric, character, ...)?
+-   Which variables should be converted to another 'type' (numeric,
+    character, ...)?
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+*What is your conclusion?*
+
+Most categorical variables (`ID_Class`, `ID_Student`, `Educ_level`,
+`Gender`, `SES_language`, `SES_neighbourhood`, `SES_educ_level`) are
+defined as 'integer'. These variables should be converted to type
+'character'. The variable `X` contains row numbers and should be
+removed.
+
+You might have already noticed that several variables contain missing
+values (NA's). However, it is always save to check this for all
+variables and also to look for 'strange' values. **Get an overview of
+the variables using the function `summary()`.**
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+*What is your conclusion?*
+
+Almost all variables have missing values. The maximum value of the
+motivation variables (`Autonomous_motivation`, `Controlled_motivation`,
+`Amotivation`) is 99. This is, of course, an impossible value (maximum
+was 5). To be sure that these variables don't contain other strange
+values, **you make a quick barplot of the distribution of each of these
+variables. You save the plots as objects `P1`, `P2` and `P3`.**\
+(A barplot is most of the time not a good choice to visualise
+quantitative variables. However, to get an idea of every value in a
+quantitative variable, a barplot is more informative than a histogram or
+density plot.)
+
+💡 *Attention! You have to create three barplots. These plots can be
+combined into one plot using the package `patchwork`. You have to load
+this package and add code to combine the three plots. This code has
+already been included in the code block below. This code now has a `#`
+in front of it. Remove that `#` so the code will be executed.*
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+*What is your conclusion?*
+
+The motivation variables (`Autonomous_motivation`,
+`Controlled_motivation`, `Amotivation`) don't contain other strange
+values.
+
+**You decide to also visualise the distribution of the categorical
+variables: `Educ_level`, `Gender`, `SES_language`, `SES_neighbourhood`
+en `SES_educ_level` (using a barplot).**
+
+You already know that these variables are included as numeric variables,
+while they are of type character. To make sure that you get correct
+values on the x-axis of your barplots, specify the `x aesthetic` as
+follows `ggplot(aes(x = as.character(Educ_level)))`.
+
+💡 *Attention! You have to create five barplots. These plots can be
+combined into one plot using the package `patchwork`. You have to add
+code to combine the five plots. This code has already been included in
+the code block below. This code now has a `#` in front of it. Remove
+that `#` so the code will be executed.*
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+*What is your conclusion?*
+
+The distribution of the five categorical variables looks fine. (They all
+have missing values!) Category 4 of the variable `Educ_level` contains
+little observations compared to that of the three other categories. It
+would be nice if the categories of all these variables would be
+appropriately labelled. (In that case, you would immediately know what
+category 4 of the variable `Educ_level` refers to.)
+
+## 1.3 Clean data
+
+After having checked the data, you know that the following actions needs
+to be performed:
+
+1.  convert all categorical variables to a character variable
+2.  label the categories of the variables `Educ_level`, `Gender`,
+    `SES_language`, `SES_neighbourhood` and `SES_educ_level` and store
+    them as new variables
+3.  recode the values 99 in the motivation variables
+    (`Autonomous_motivation`, `Controlled_motivation`, and
+    `Amotivation`) to NA and store them as new variables
+4.  remove the first column
+
+Write the code to perform the actions listed above and save as a new
+data frame `transition_data_cleaned`
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+**Don't forget to check your recoding work!**
+
+First, *check whether each variable is defined correctly. (Are all
+categorical variables defined as a character variable? Is the redundant
+variable removed from the data?)*
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+*Check whether you labelled the categorical variables correct using the
+function `table()`.*
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+## 1.4 Prepare data for analysis
+
+Create a data frame `transition_data_for_analysis` that only contains
+the following variables:
+
+-   ID_School\
+-   ID_Class\
+-   ID_Student\
+-   Educ_level and Educ_level_cat\
+-   Gender and Gender_cat\
+-   all SES-indicators (original and recoded variables)\
+-   IQ_score, Reading_score, Wisk_score\
+-   the motivation variables (only the ones that you recoded)
+
+To select these variables efficiently, the 'selection helpers' of the
+select()-function are handy. More information on these helpers can be
+found [here](https://dplyr.tidyverse.org/reference/select.html). Also
+include a standardized version of every quantitative variable in your
+data set. To standardize a variable, you can use the function `scale()`.
+Finally, you decide to exclude all students in the arts education track
+(based on the results of the barplot you created in 1.2).
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+Check you new data frame `transition_data_for_analysis`.
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+Check if the data is filtered correctly.
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+# 3. Some descriptives
+
+Before doing the analysis, you want to check some things.
+
+First, **you want to get an idea of the number of observations per
+school.** To do so, you create a lollipop plot. To help the reader of
+your rapport, you make sure that the 'bars' are arranged in ascending
+order. Color bars with counts less than 20 in red. (You first have to
+create a new variable `color_ID` to be avble to do that!) Use your
+ggplot2-skills to make the plot "publication-ready".
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+You also create a table with the descriptive statistics (mean, SD, min,
+max) of the raw (unstandardized) variables `IQ_score`, `Reading_score`
+and `Math_score`. To so, you first create a vector per variable (using
+the function `c()`) that contains those four values. To calculate these
+values you use the functions `mean()`, `sd()`, `min()` and `max()`.
+Then, you combine the three vectors into one tibble (`descriptives`)
+using the function `bind_rows()`. (This function pastes the rows below
+each other.) Don't forget to print the resulting tibble.
+
+```{r}
+
+# CODE HERE
+
+```
+
+Before turning the tibble into a real table, **you must round all
+numbers to two places after the decimal** combining the functions
+`mutate_all` and `round()`. After that, you also **create a new column
+`Name` that contains the names of the variables. Make sure it appears
+before the column `mean`.**
+
+```{r}
+
+# CODE HERE
+
+```
+
+Reuse the code you wrote and turn your tibble into a real table by using
+the function `kable()`.\*\* Check out the help-page of the
+`kable()`-function to find out how you can align the five columns!
+Center all but the first columns. (The first one can be "left" aligned.)
+
+💡 *Attention! To use the function `kable()` you have to install and
+load the package `knitr`.*
+
+```{r}
+#| echo: true 
+
+# CODE HERE
+
+```
+
+Much more options are available when you also install the package
+`kableExtra`. This website provides more information on the use of that
+package:
+https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html
+One of the many nice features of kableExtra are the built-in themes:\
+- kable_classic()\
+- kable_classic2()\
+- kable_paper()\
+- kable_minimal()\
+- kable_material()\
+- kable_material_dark()
+
+Reuse the code your wrote above and add a theme. Play around with these
+themes to get to know them.
+
+💡 *Attention! To use these functions you have to install and load the
+package `kableExtra`.*
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+# 4. Analyse the data
+
+**Fit a first linear regression model with math score as dependent
+variable and the thee motivation variables as independent variables.**
+
+Use standardized variables. Save your model as an object `Model_lm1` and
+print the model summary.
+
+```{r}
+#| echo: true
+ 
+# CODE HERE
+
+```
+
+**Fit a second linear regression model that builds on the previous one
+but adds gender, educational level, IQ-score and reading-score as
+control variables.**
+
+Use standardized variables. Save your model as an object `Model_lm2` and
+print the model summary.
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+Before reporting on the results, \*\*you have to check the assumptions
+of both models. Several R-packages perform these kind of tasks. One
+example is the `performance` package. Install this package and use the
+function `check_model()` to do a visual check of the assumptions.
+
+💡 *Attention! To use the function `check_model()` you have to install
+and load the package `performance`.*
+
+Check the assumptions of the model `Model_lm1` first.
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+Do the same for the other model.
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+These results look quite good. However, you also want to do an
+additional check for outliers. Go to [this
+website](https://easystats.github.io/performance/index.html) and look
+for the function that you need to do an additional check on outliers.
+
+```{r}
+#| echo: true
+
+# CODE HERE
+
+```
+
+Another important assumption concerns the distribution of the dependent
+variable (should be normally distributed). You do not need a package to
+check on that distribution, but **use your ggplot2-skills to make a
+histogram of the distribution of the dependent variable.** 'Style' the
+histogram so you can use it in a publication.
+
+```{r}
+
+# CODE HERE
+
+```
+
+The tail on the left-hand side of the distribution worries you a bit.
+You decide to discuss this with your supervisor.
+
+To finish up the report, you **create a nice table of the estimates of
+both models**. To create this table, you use the function `tab_model()`
+of the package `sjPlot`. Go the help-page of this function and figure
+out how to turn off the printing of p-values, print a 90% confidence
+interval, rename the column names to 'Variables', 'Est.' and '90% CI'
+and remove the brackets around Intercept.
+
+💡 *Attention! To use the function `tab_model()` you have to install and
+load the package `sjPlot`.*
+
+```{r}
+
+# CODE HERE
+ 
+```
+
+Before sending the report to your supervisor, you compare both models.
+To do so, you first **make a data set `transition_data_omitted` that
+excludes all missing values for the variables included in `Model_lm2`.**
+(This is necessary in order to compare the models.)
+
+```{r}
+
+# CODE HERE
+
+```
+
+Then, you **refit both models using the new data set.**
+
+```{r}
+
+# CODE HERE
+
+```
+
+Finally, you **compare both models using the function
+`compare_performance`** of the package `performance`.
+
+```{r}
+
+# CODE HERE
+
+```
+
+To be able to sent the report to your supervisor, you render it as an
+html-file
+
+::: callout-tip
+## A Quarto tip!
+
+Please note, if you Render the document to send it to someone else you
+want to have all the information in one single file so that you can send
+the .html file to that person. To make sure all the figures etc are in
+the file, specify the option `self-contained: true` in the YAML. See it
+in action in the .qmd file for this exercise.
+:::
