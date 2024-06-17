@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ICO Workshop R &amp; RStudio - Part 2</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.17/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: title-slide, center, middle
+
+&lt;link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous"&gt;
+
+
+
+
+
+
+&lt;style&gt;
+
+.center2 {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.rcorners1 {
+  margin: auto;
+  border-radius: 25px;
+  background: #ada500;
+  padding: 10px;
+#  width: 50%;
+}
+&lt;/style&gt;
+
+&lt;style type="text/css"&gt;
+.right-column{
+  padding-top: 0;
+}
+
+.remark-code, .remark-inline-code { font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
+                                    font-size: 90%;
+                                  }
+
+&lt;/style&gt;
+
+
+&lt;div class="my-logo-left"&gt; &lt;img src="img/UA-eng-hor-1-RGB.jpg" width="110%"/&gt; &lt;/div&gt;
+&lt;div class="my-logo-right"&gt; &lt;img src="img/ICO-logo.png" width="90%"/&gt; &lt;/div&gt;
+
+
+# ICO Workshop R &amp; RStudio
+.font160[
+.SW-greenD[Part 2]
+]
+.font120[
+.SW-greenD[*Markdown* &amp; *Quarto*]
+]
+Sven De Maeyer &amp; Tine van Daal
+
+.font80[
+.UA-red[
+2nd - 4th July, 2024
+]
+]
+
+---
+class: inverse-green, left
+
+# Overview
+
+.center2[
+- What is markdown --- ([Go to that section](#part1))
+- Integrating Markdown and R code --- ([Go to that section](#part2))
+- Creating a basic Quarto document --- ([Go to that section](#part3))
+
+]
+
+---
+class: inverse-green, center, middle
+name: part1
+
+# 1. What is markdown?
+
+---
+
+## Markdown
+
+- 'low end' text editor system
+
+- make content that can be read on different systems
+
+- mainly easy way to generate **html** files
+
+- you write in 'plain text' and an interpreter generates an nice edited version
+
+---
+
+## Basic syntax
+
+&lt;img src="markdown_basic.jpg" width="55%" height="55%" /&gt;
+
+---
+
+## Extension
+
+&lt;div class="figure"&gt;
+&lt;img src="markdown_extended.jpg" alt="extended lijst van commando's" width="55%" height="55%" /&gt;
+&lt;p class="caption"&gt;extended lijst van commando's&lt;/p&gt;
+&lt;/div&gt;
+
+---
+class: inverse-green, center, middle
+name: part2
+
+# 2. Integrating Markdown and R code
+
+---
+
+## Rmarkdown &amp; Quarto
+
+Two roads with the same destination, but...
+
+.pull-left[
+
+.UA-red[Rmarkdown]
+
+- developed 10 years ago by RStudio company
+- an R package
+- only works in RStudio
+- still supported but no major advances in development
+- generates pdf, html and word-docs
+
+]
+
+.pull-right[
+
+.UA-red[Quarto]
+
+- recently developed by RStudio company
+- stand alone software
+- integrates with RStudio but also with other software
+- cross-language platform (python, Julia, Observable, ...)
+- all new cool new stuff will be implemented in Quarto
+- generates pdf, html, word, open-office, ppt, ePub, Observable JS, Jira Wiki, websites, online books, etc
+- CEO of RStudio company anounced the development of an online editing application (like google docs)
+
+]
+
+---
+
+## How Quarto works...
+
+.center2[
+&lt;img src="Quarto_Flow.jpg" width="80%" height="80%" /&gt;
+]
+---
+## Quarto info
+
+If you want to learn more about Quarto, a lot of information is available at  
+
+https://quarto.org/docs/guide/
+
+&lt;br&gt;
+
+AND 
+
+&lt;br&gt;
+
+there are great extensions!
+
+see: https://quarto.org/docs/extensions/
+
+---
+## Installing Quarto
+
+&lt;img src="Quarto_webpage.jpg" width="60%" height="60%" /&gt;
+
+.UA-red[**Click on GET STARTED**]
+---
+## Installing Quarto
+
+&lt;img src="download_quarto.jpg" width="60%" height="60%" /&gt;
+
+.UA-red[**Choose the correct version for your pc**]
+
+.UA-red[**Install the software and restart RStudio**]
+
+---
+## Check the installation
+
+.UA-red[**You should see the option to open a new "Quarto document" in RStudio**]
+
+---
+class: inverse-green, center, middle
+name: part3
+
+# 3. Creating a basic Quarto document
+---
+
+## A first basic hands-on exploration of Quarto
+
+.center2[
+.rcorners1[.Large[
+&lt;i class="fas fa-code" style="color: #FF0035;"&gt;&lt;/i&gt; .white[*Let's create a first Quarto Document...*]
+]
+&lt;br&gt; 
+.footnotesize[.white[   *The following slides are some screen shots of what we all did together, hands-on*  😊 
+]]
+]
+]
+
+---
+## Open a New File
+
+.pull-left[
+
+- Click on .UA-red[**File**]
+- Choose .UA-red[**New File**]
+- Choose .UA-red[**Quarto Document...**]
+
+]
+
+.pull-right[
+Result:
+&lt;img src="New_Quarto1.jpg" width="100%" height="100%" /&gt;
+]
+
+
+---
+## Fill in some basic info
+
+.pull-left[
+
+- Fill in a .UA-red[**title**] and an .UA-red[**author**]
+- Click on .UA-red[**Create**]
+
+]
+
+.pull-right[
+Result:
+&lt;img src="New_Quarto2.jpg" width="100%" height="100%" /&gt;
+]
+
+---
+## Two different views
+
+.pull-left[
+
+.UA-red[**Source editor**]
+&lt;img src="New_Quarto2.jpg" width="90%" height="90%" /&gt;
+
+= raw 'markdown' language
+]
+
+.pull-right[
+
+.UA-red[**Visual editor**]
+&lt;img src="New_Quarto3.jpg" width="90%" height="90%" /&gt;
+
+= like a worddoc editor (see what you get)
+]
+
+---
+## Two parts of a Quarto document
+
+.pull-left[
+.SW-greenD[
+YAML
+]
+
+&lt;img src="Quarto_Yaml.jpg" width="100%" height="100%" /&gt;
+
+To set some of the parameters (aka **Metadata**)
+]
+
+.pull-right[
+.SW-greenD[
+Your narrative:
+]
+
+Titles +
+
+text +
+
+code +
+
+output +
+
+tables + 
+
+figures (generated by code) +
+
+images +
+
+(exeternal and internal) links +
+
+references +
+
+embeded content (e.g., YouTube Video)
+
+etc.
+]
+
+---
+## Code chunks 
+
+All R-code can be written in .UA-red[**Code chunks**]
+
+While constructing your Quarto document you can RUN code chunks 
+
+Click the green arrow (top-right corner of code chunk) 
+
+&lt;img src="Quarto_run_code_chunk.jpg" width="100%" height="100%" /&gt;
+
+As a result you get the output printed in your Quarto document
+
+&lt;img src="Quarto_run_code_chunk2.jpg" width="100%" height="100%" /&gt;
+
+---
+## Code chunks 
+
+.UA-red[**ATTENTION!**]: The order of code chunks do matter. If you want to run all the code in the code chunks before a certain code chunk, you can click on the button aside of the green arrow (downward green arrow)
+
+---
+## Adding a new code chunk 
+
+.pull-left[
+&lt;img src="Quarto_add_code_chunk.jpg" width="80%" height="80%" /&gt;
+]
+
+.pull-right[
+&lt;img src="Quarto_add_code_chunk2.jpg" width="80%" height="80%" /&gt;
+]
+
+.center2[
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+  &lt;p style=" text-align:center;"&gt;
+  .Large[&lt;i class="fas fa-arrow-circle-right" style="color: #FF0035;"&gt;&lt;/i&gt;] 
+  &lt;/p&gt;
+&lt;br&gt; &lt;br&gt; &lt;br&gt; &lt;br&gt; &lt;br&gt; &lt;br&gt;
+Or with a short-cut (on your keyboard)...
+
+Windows: .UA-red[**`ctrl + alt + i`**]
+
+Mac: .UA-red[**`option + command + i`**]
+]
+
+---
+## Code chunk options
+
+&lt;img src="Quarto_code_chunk_options.jpg" width="80%" height="80%" /&gt;
+
+- `#| include: false` `\(/rightarrow\)` code and output (result) are hidden but code is executed
+
+- `#| echo: false`: only results are printed, code is hidden
+
+- `#| message: false` hides messages coming from R related to running the code
+
+- `#| warning: false` hides warnings coming from running the code
+
+- `#| error: false` hides error messages coming rom running the code
+
+- `#| fig.cap = "..."` adds a caption for a figure created
+
+More detailed information: https://yihui.org/knitr/options/ 
+---
+## Inserting references
+
+You can easily insert citations and references
+
+.pull-left[
+&lt;img src="Quarto_insert_reference1.jpg" width="80%" height="80%" /&gt;
+]
+
+.pull-right[
+&lt;img src="Quarto_insert_reference2.jpg" width="80%" height="80%" /&gt;
+]
+
+---
+## Inserting references
+
+If you work with .UA-red[Zotero] there is an easy integration! (https://www.zotero.org/)
+
+Search references based on DOI
+
+Easy to find and insert citations of R packages installed on your computer
+
+---
+## Inserting a callout
+
+To highlight some specific piece of text you can use a callout
+
+It will generate something like this in your final html document:
+
+&lt;img src="Quarto_callout_example.jpg" width="80%" height="80%" /&gt;
+
+---
+## Inserting a callout
+
+.pull-left[
+&lt;img src="Quarto_insert_callout.jpg" width="80%" height="80%" /&gt;
+]
+
+.pull-right[
+&lt;img src="Quarto_inside_callout2.jpg" width="80%" height="80%" /&gt;
+]
+
+---
+## Adding a Tabset
+
+In an html file you can also add Tabsets... They look like this in the resulting html file:
+
+.pull-left[
+&lt;img src="Quarto_Tabset_result1.jpg" width="100%" height="100%" /&gt;
+
+]
+
+.pull-right[
+&lt;img src="Quarto_Tabset_result2.jpg" width="100%" height="100%" /&gt;
+]
+
+This is a way to save space on the canvas and keep your file tight and neat. 
+---
+## Adding a Tabset
+
+Go to .UA-red[**Insert**] and choose .UA-red[**Tabset**]
+
+&lt;img src="Quarto_insert_Tabset.jpg" width="60%" height="60%" /&gt;
+
+---
+## Adding a Tabset
+
+.pull-left[
+
+This opens the following menu:
+
+&lt;img src="Quarto_Tabset1.jpg" width="60%" height="60%" /&gt;
+
+
+]
+
+.pull-right[
+
+You can fill in the titles for each tab in the Tabset:
+
+&lt;img src="Quarto_Tabset2.jpg" width="60%" height="60%" /&gt;
+
+
+]
+
+---
+## Adding a Tabset
+
+In the Quarto document you now have a section to make content for each tab in the Tabset:
+
+&lt;img src="Quarto_Tabset_example_code.jpg" width="60%" height="60%" /&gt;
+
+
+---
+## Changing your theme
+
+If you don't like the formatting of the rendered html file, there are some other themes that can be used!
+
+See: https://quarto.org/docs/output-formats/html-themes.html
+
+This is something you can tweak in the YAML of the file
+
+For instance, let's choose the formatting according to the `journal` theme
+
+&lt;img src="Quarto_set_theme.jpg" width="80%" height="80%" /&gt;
+
+---
+## Changing your theme
+
+.pull-left[
+
+Let's try another one: `superhero`! 
+
+This one is clearly different from the default theme.
+
+Of course, if you feel adventurous you can build your own theme (e.g., to meet the branding of your university)
+
+]
+
+
+.pull-right[
+
+&lt;img src="Quarto_theme_superhero.jpg" width="100%" height="100%" /&gt;
+
+]
+
+---
+## Tweaking your theme in the YAML
+
+Some elements of formatting can be easily added in the YAML
+
+See https://quarto.org/docs/output-formats/html-basics.html
+
+.pull-left[
+
+For instance, let's also add a *table of contents* (toc) that contains all headers up till level 3
+
+&lt;img src="Quarto_add_toc_YAML.jpg" width="100%" height="100%" /&gt;
+
+
+]
+
+.pull-right[
+
+&lt;img src="Quarto_add_toc.jpg" width="100%" height="100%" /&gt;
+
+]
+
+---
+## Code folding
+
+By default all the code is shown for code chunks that have not set the option `#| echo: false`
+
+This behaviour can be changed in the YAML by introducing the `code-fold: true` option
+
+.pull-left[
+
+&lt;img src="Quarto_codefold_YAML.jpg" width="100%" height="100%" /&gt;
+
+]
+
+
+.pull-right[
+
+&lt;img src="Quarto_codefold_result.jpg" width="100%" height="100%" /&gt;
+
+]
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

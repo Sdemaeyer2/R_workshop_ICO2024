@@ -1,0 +1,25 @@
+---
+title: "Excercise 1: Import and explore data"
+format: html
+---
+
+# Introduction
+
+In this first exercise you will have to complete the first cycles of a typical research flow: import a dataset from an external file (an SPSS dataset) and do some first rough data explorations.
+
+Before we set you in action, we will give a very short introduction on the research that generated the dataset. 
+
+## The Friends Study
+
+The data we will use for this exercise is a simulated dataset, but the data are partially inspired by a study we conducted in Antwerp in cooperation with the Tarragona University ( ).
+
+The general research question in the dataset was on the impact of *subtitling* on the language development. More specifically we were interested in whether the use of English subtitling in tv-series impacted the knowledge of the knowledge of colloqual English of Spanish mother tongue speakers. In Spain the default on tv is dubbing the original spoken word in Spanish. In some other countries (like the Netherlands and the Flemish speaking part of Belgium) the default is the broadcast the original English spoken version of tv series and subtitle them in the official language of the country (e.g., Dutch). The hypothesis leading this research is that learning of English goes faster in the latter case (with the use of subtitles) than in the former case (dubbing). 
+
+# Part 1: Import the data
+
+Before you can even start, you have to think about the necessary *R packages* for your tasks ahead. Use the R code chunk below to create code that activate the necessary packages to load the dataset.
+
+```{r}
+
+```
+
