@@ -127,7 +127,7 @@ For this part, we will use a very small dataset `Fruit.RData`. The data can be d
 
 ### Outline
 
-In this part of the workshop we go one step further. We will first shortly introduce the idea of *leave-one-out cross-validation* which can be used to compare alternative models. Next we will estimate some *Bayesian Mixed Effects Models* and delve into the endeavour to think about the different priors. We will consider alternative priors for both the fixed and random effect parameters in the model. Using prior predictive checking we will consider the impact of these priors. Finally, we will also introduce the concept of *posterior predictive checking* to evaluate our model. 
+In this part of the workshop we introduce `dplyr` verbs. `dplyr` is a package that lives in the `tidyverse` that has powerfull functions to do some heavy lifting data wrangling operations. We will show how this package can be used to create new variables, select variables, filter cases, re-arrange datasets, merge datasets, ... 
 
 #### Slides
 
@@ -135,7 +135,7 @@ The htlm-version of the slides for this first part can be found <a href="Present
 
 #### Data
 
-For this first part, we used a dataset on the effect of a writing intervention. The data can be downloaded <a href="Data/WritingData.RData" target="blank"> here </a> (right-click to save as). 
+For this slideshow, we used a dataset called `Friends.RData`. The data can be downloaded <a href="Presentations/Part3/Friends.RData" target="blank"> here </a> (right-click to save as). 
 
 
 ## Column 2
@@ -163,13 +163,11 @@ These are the topics covered in this part:
 
 #### Slides
 
-The htlm-version of the slides for this first part can be found <a href="Presentations/Part4/slides_part4.html" target="blank">here</a>
+The htlm-version of the slides for this first part can be found <a href="Presentations/Part4/slides_part-4.html" target="blank">here</a>
 
 #### Data
 
-
-
-#### R scripts
+In this slideshow we make use of the `Pinguins` dataset that is part of the `tidyverse` package. So, no specific data has to be downloaded to mimic the commands in the slides.
 
 
 ## Column 2
@@ -182,17 +180,14 @@ The htlm-version of the slides for this first part can be found <a href="Present
 
 ### Outline
 
-Now everything is set to learn more about creating powerfull visualizations in `R`. To this end, we will introduce you the go-to package for visualizations in `R`: `ggplot2`.
+Of course, `R` is not just a tool to do some data-wrangling and data-visualizations. It is a language to perform statistical analyses. In this final part we will show how some typical basic statistical analyses can be performed making use of `R`.
 
 These are the topics covered in this part:
 
-- Simple plots in R 
-- Grammar of graphics
-- How ggplot2 works (in a nutshell)
-- Visualising a categorical variable
-- Visualising a quantitative variable
-- Visualising more than one variable
-- More about visualisation? 
+- Correlation
+- t-test
+- linear regression
+- outro
 
 #### Slides
 
