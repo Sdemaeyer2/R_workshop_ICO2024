@@ -109,7 +109,7 @@ The second part of this workshop taps into the use of `Quarto` documents! Using 
 
 These will be topics covered:
 
-- What is markdown 
+- What is Markdown? 
 - Integrating Markdown and R code 
 - Creating a basic Quarto document 
 
@@ -155,7 +155,7 @@ These are the topics covered in this part:
 
 - Simple plots in R 
 - Grammar of graphics
-- How ggplot2 works (in a nutshell)
+- How `ggplot2` works (in a nutshell)
 - Visualising a categorical variable
 - Visualising a quantitative variable
 - Visualising more than one variable
@@ -167,7 +167,7 @@ The htlm-version of the slides for this first part can be found <a href="Present
 
 #### Data
 
-In this slideshow we make use of the `Pinguins` dataset that is part of the `tidyverse` package. So, no specific data has to be downloaded to mimic the commands in the slides.
+In this slideshow we make use of the `Pinguins` dataset that is part of the `palmerpenguins` package. So, the package `palmerpenguins` has to be installed and loaded to mimic the commands in the slides.
 
 
 ## Column 2
