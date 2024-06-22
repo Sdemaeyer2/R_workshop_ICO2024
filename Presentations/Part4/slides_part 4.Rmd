@@ -138,17 +138,21 @@ plot(table(Friends$condition))
 ]
 .panel[.panel-name[`boxplot()`]
 ```{r eval = T, echo = T, fig.width = 5, fig.height=5, fig.align = 'center'}
-boxplot(Friends$fluency,
-        main = "Boxplot of the variable 'fluency'", 
-        col = "steelblue") 
+boxplot(
+  Friends$fluency,
+  main = "Boxplot of the variable 'fluency'", 
+  col = "steelblue"
+  ) 
 ```
 ]
 .panel[.panel-name[`hist()`]
 ```{r eval = T, echo = T, fig.width = 5, fig.height=5, fig.align = 'center'}
-hist(Friends$fluency,
-     main = "Histogram of the variable 'fluency'", 
-     freq = FALSE, 
-     ylim = c(0, .08)) 
+hist(
+  Friends$fluency,
+  main = "Histogram of the variable 'fluency'",
+  freq = FALSE,
+  ylim = c(0, .08)
+  ) 
 ```
 ]
 ]
@@ -732,10 +736,12 @@ ggplot(count_data,
 --
 .pull-left[.footnotesize[
 ```{r, echo = T, eval=F}
-ggplot(penguins,
-       aes(
-         x = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = species
+    )
+  ) +
   geom_bar()
 
 # stat_count() does the counting automatically 
@@ -744,14 +750,17 @@ ggplot(penguins,
 ]
 .pull-right[.footnotesize[
 ```{r, echo=T, eval=F}
-count_data <- penguins %>%
+count_data <- 
+  penguins %>%
   count(species, name = 'count')
 
-ggplot(count_data,
-       aes(
-         x = species,
-         y = count
-       )) +
+ggplot(
+  count_data,
+  aes(
+    x = species,
+    y = count
+    )
+  ) +
   geom_col()
 ```
 ]
@@ -767,10 +776,12 @@ ggplot(count_data,
 
 .footnotesize[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = species
+    )
+  ) +
   geom_bar(
     ## Additional aesthetic: "fill"-scale
     aes(fill = species) 
@@ -797,14 +808,16 @@ ggplot(penguins,
 
 .pull-left[
 
-- Determine "fill"-colors by adding **`scale_fill_manual()`**
+- Determine `fill`-colors by adding **`scale_fill_manual()`**
 
 .footnotesize[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = species
+    )
+  ) +
   geom_bar(
     aes(fill = species)
     ) +
@@ -842,15 +855,17 @@ ggplot(penguins,
 
 .footnotesize[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = species
+    )
+  ) +
   geom_bar(
-    aes(fill = species)
-    ) +
+    aes(fill = species)    ) +
   scale_fill_manual(
-    values = c("darkorange","purple","cyan4")
+    values =
+      c("darkorange","purple","cyan4")
     ) +
   ## Add title, subtitle and label x-axis
   labs(
@@ -893,15 +908,18 @@ ggplot(penguins,
 
 .footnotesize[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = species
+    )
+  ) +
   geom_bar(
     aes(fill = species)
     ) +
   scale_fill_manual(
-    values = c("darkorange","purple","cyan4")
+    values =
+      c("darkorange","purple","cyan4")
     ) +
   labs(
     title = "Palmer penguins",
@@ -947,10 +965,12 @@ ggplot(penguins,
 
 .footnotesize[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = species
+    )
+  ) +
   geom_bar(
     aes(fill = species)
     ) +
@@ -1012,18 +1032,27 @@ Use two *geoms*: .UA-red[**`geom_point()`**] and .UA-red[**`geom_segment()`**]
 ```{r, eval = FALSE}
 penguins %>% 
   count(species) %>% 
-  ggplot(aes(x = species, y = n)) + 
+  ggplot(
+    aes(
+      x = species, 
+      y = n)
+    ) + 
   geom_point( 
     aes(col = species) 
   ) +  
   geom_segment(  
-    aes(x = species, xend = species, 
-        y = 0, yend = n, col = species)
+    aes(
+      x = species,
+      xend = species, 
+      y = 0, 
+      yend = n, 
+      col = species
+      )
     ) + 
 ```
 ]
 
-Reuse remainder of the code!  
+Re-use remainder of code!  
 
 .font50[
 ```{r, eval = FALSE}
@@ -1094,8 +1123,13 @@ penguins %>%
     aes(col = species) 
   ) + 
   geom_segment(  
-    aes(x = species, xend = species, 
-        y = 0, yend = n, col = species) 
+    aes(
+      x = species,
+      xend = species, 
+      y = 0, 
+      yend = n,
+      col = species
+      ) 
     ) + 
   scale_fill_manual(
     values = c("darkorange","purple","cyan4")
@@ -1107,7 +1141,9 @@ penguins %>%
   ) +  
   coord_flip( ) + 
   theme_minimal( ) +
-  theme(legend.position = "none") 
+  theme(
+    legend.position = "none"
+    ) 
 ```
 ]
 ]
@@ -1215,10 +1251,12 @@ knitr::include_graphics("img/fundamentals_viz.png")
 .pull-left[
 .footnotesize[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = flipper_length_mm,
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = flipper_length_mm
+    )
+  ) +
   geom_histogram()
 ```
 ]
@@ -1244,10 +1282,12 @@ ggplot(penguins,
 
 .footnotesize[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = flipper_length_mm,
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = flipper_length_mm
+    )
+  ) +
   geom_histogram() +
   ## Specify breaks
   scale_y_continuous( 
@@ -1284,11 +1324,13 @@ ggplot(penguins,
 
 .font60[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = flipper_length_mm,
-         fill = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = flipper_length_mm,
+    fill = species
+    )
+  ) +
   geom_histogram(
     ## Change transparency of points
     alpha = .7 
@@ -1298,7 +1340,8 @@ ggplot(penguins,
     breaks = c(seq(0, 25, 5), 29) 
     ) + 
   scale_fill_manual(
-    values = c("darkorange","purple","cyan4")
+    values =
+      c("darkorange","purple","cyan4")
     ) +
   labs(
     title = "Palmer penguins",
@@ -1354,11 +1397,13 @@ ggplot(penguins,
 
 .footnotesize[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = flipper_length_mm,
-         fill = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = flipper_length_mm,
+    fill = species
+    )
+  ) +
   ## Use geom_density
   geom_density(
     alpha = .7
@@ -1370,7 +1415,8 @@ ggplot(penguins,
     title = "Palmer penguins",
     subtitle = "Density plot of flipper length",
     x = "Flipper length"
-  ) + theme_minimal()
+  ) + 
+  theme_minimal()
 ```
 .left[.font70[
 <sup>*°*</sup>*surface below curve = 100%*
@@ -1408,11 +1454,13 @@ ggplot(penguins,
 
 .footnotesize[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = flipper_length_mm,
-         color = species 
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = flipper_length_mm,
+    color = species
+    )
+  ) +
   geom_density() + 
   ## Replace scale_color with scale_fill
   scale_color_manual( 
@@ -1424,7 +1472,9 @@ ggplot(penguins,
     x = "Flipper length"
   ) + 
   theme_minimal() +
-  theme(panel.grid.minor = element_blank())
+  theme(
+    panel.grid.minor = element_blank()
+    )
 ```
 ]
 ]
@@ -1457,21 +1507,22 @@ ggplot(penguins,
 ## Or even better ... .UA-red[`geom_violin()` + `geom_jitter()`]
 
 .pull-left[
-.footnotesize[
+.font50[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = species,
-         y = flipper_length_mm,
-         ## Aesthetics fill and color applied to EVERY geom
-         fill = species,
-         color = species
-       )) +
-  ## Use geom_violin
+ggplot(
+  penguins,
+  aes(
+    x = species,
+    y = flipper_length_mm,
+    ## Aesthetics fill and color applied to EVERY geom
+    fill = species,
+    color = species
+    )
+  ) +
+  ## Use geom_violin and geom_jitter
   geom_violin(
     alpha = .65
   ) +
-  ## Use geom_jitter
   geom_jitter(
     alpha = .7
   ) +
@@ -1484,9 +1535,13 @@ ggplot(penguins,
   labs(
     title = "Palmer penguins",
     subtitle = "Density plot voor flipper lengte",
-    y = "Flipper lengte",
+    y = "Flipper length",
     x = "",
-  ) + theme_minimal() + theme(legend.position = "none")
+  ) + 
+  theme_minimal() +
+  theme(
+    legend.position = "none"
+    )
 ```
 ]
 ]
@@ -1515,7 +1570,7 @@ ggplot(penguins,
   labs(
     title = "Palmer penguins",
     subtitle = "Density plot voor flipper lengte",
-    y = "Flipper lengte",
+    y = "Flipper length",
     x = "",
   ) + theme_minimal() + theme(legend.position = "none")
 ```
@@ -1529,15 +1584,17 @@ ggplot(penguins,
 - Put names of species on top using argument **`position="top"`**   
 - Remove minor grid lines using argument **`panel.grid.major = element_blank()`**
 
-.font50[
+.font40[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = species,
-         y = flipper_length_mm,
-         fill = species,
-         color = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = species,
+    y = flipper_length_mm,
+    fill = species,
+    color = species
+    )
+  ) +
   geom_violin(
     alpha = .65
   ) +
@@ -1545,7 +1602,6 @@ ggplot(penguins,
     alpha = .7
   ) +
   scale_x_discrete(
-    ## Put x-axis labels on top
     position = "top"
     ) +
   scale_fill_manual(
@@ -1559,11 +1615,14 @@ ggplot(penguins,
     subtitle = "Density plot of flipper length",
     y = "Flipper length",
     x = "",
-  ) + theme_minimal() + 
-  theme(legend.position = "none",
-        panel.grid.minor = element_blank(),
-        ## Remove major grid lines
-        panel.grid.major.x = element_blank()) 
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    ## Remove major grid lines
+    panel.grid.major.x = element_blank()
+    ) 
 ```
 ]
 ]
@@ -1751,11 +1810,13 @@ We focus today upon:
 .pull-left[
 .footnotesize[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = body_mass_g,
-         y = flipper_length_mm
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = body_mass_g,
+    y = flipper_length_mm
+    )
+  ) +
   geom_point() +
   labs(
     title = "Palmer penguins",
@@ -1764,7 +1825,9 @@ ggplot(penguins,
     x = "Body mass",
   ) + 
   theme_minimal() + 
-  theme(legend.position = "none")
+  theme(
+    legend.position = "none"
+    )
 ```
 ]
 ]
@@ -1794,14 +1857,16 @@ ggplot(penguins,
 .pull-left[
 .footnotesize[
 
-- Add trend line by adding **`geom_smooth()`**  
+- Add trend line using **`geom_smooth()`**  
 
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = body_mass_g,
-         y = flipper_length_mm
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = body_mass_g,
+    y = flipper_length_mm
+    )
+  ) +
   geom_point() +
   ## Add a trendline
   geom_smooth() +
@@ -1812,7 +1877,9 @@ ggplot(penguins,
     x = "Body mass"
   ) + 
   theme_minimal() + 
-  theme(legend.position = "none")
+  theme(
+    legend.position = "none"
+    )
 ```
 ]
 ]
@@ -1843,19 +1910,21 @@ ggplot(penguins,
 
 .pull-left[
 
-- Linear trend line by adding argument **`method = "lm"`**      
+- Linear trend line using argument **`method = "lm"`**      
 - Remove confidence intervals using argument **`se = FALSE`**    
 
 .footnotesize[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = body_mass_g,
-         y = flipper_length_mm
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = body_mass_g,
+    y = flipper_length_mm
+    )
+  ) +
   geom_point() +
   geom_smooth( 
-    ## Add a linear trend line
+    ## Add linear trend line
     method = "lm", 
     ## Remove confidence band
     se = FALSE 
@@ -1867,7 +1936,9 @@ ggplot(penguins,
     x = "Body mass",
   ) + 
   theme_minimal() + 
-  theme(legend.position = "none")
+  theme(
+    legend.position = "none"
+    )
 ```
 ]
 ]
@@ -1901,23 +1972,30 @@ ggplot(penguins,
 
 .pull-left[
 
-- Add shape and color by specifying additional *aesthetics*: **`shape`** and **`color`**  
-- Change legend position and background, change position of plot title, and layout  (sub)title   
+- Add shape and color by specifying *aesthetics*: **`shape`** and **`color`**  
+- Change legend position and background, position of plot title, and layout  of (sub)title   
 
-.font50[
+.font40[
 ```{r, eval = FALSE}
-ggplot(data = penguins,
-       aes(x = flipper_length_mm,
-           y = body_mass_g)) +
-  geom_point(aes(color = species,
-                 ## Additional aesthetic: "shape"
-                 shape = species), 
-             size = 3,
-             alpha = 0.8) +
+ggplot(
+  penguins,
+  aes(
+    x = flipper_length_mm,
+    y = body_mass_g
+    )
+  ) +
+  geom_point(
+    aes(
+      color = species,
+      shape = species
+      ),
+    size = 3,
+    alpha = 0.8
+    ) +
   geom_smooth(
-    ## Additional aesthetic: "color"
-    aes(color = species), 
-    se = F, method = "lm"
+    aes(color = species),
+    se = F, 
+    method = "lm"
     ) +
   theme_minimal() +
   scale_color_manual(
@@ -1929,15 +2007,13 @@ ggplot(data = penguins,
     x = "Body mass",
     color = "Species", 
     shape = "Species") + 
-  theme(## Change position legend
-        legend.position = c(0.2, 0.7), 
-        ## Change background legend
-        legend.background = element_rect(fill = "white", color = NA), 
-        ## Change position of plot title
-        plot.title.position = "plot",
-        ## Change layout of plot (sub)title 
-        plot.title = element_text(hjust = 0, face= "bold"),
-        plot.subtitle = element_text(hjust = 0, face= "italic")) 
+  theme(
+    legend.position = c(0.2, 0.7), 
+    legend.background = element_rect(fill = "white", color = NA),
+    plot.title.position = "plot",
+    plot.title = element_text(hjust = 0, face= "bold"),
+    plot.subtitle = element_text(hjust = 0, face= "italic")
+    ) 
 ```
 ]
 ]
@@ -1984,19 +2060,20 @@ ggplot(data = penguins,
 
 - Adds facets using **`facet_wrap()`**  
 
-.font50[
+.font60[
 ```{r, eval = FALSE}
-ggplot(penguins,
-       aes(
-         x = body_mass_g,
-         y = flipper_length_mm
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = body_mass_g,
+    y = flipper_length_mm
+    )
+  ) +
   geom_point( ) +
   geom_smooth(
     method = "lm",
     se = FALSE
   ) +
-  ## Add facets
   facet_wrap(~species) + 
   labs(
     title = "Palmer penguins",
@@ -2005,9 +2082,11 @@ ggplot(penguins,
     x = "Body mass",
   ) + 
   theme_minimal() + 
-  theme(legend.position = "none",
-        plot.title = element_text(hjust = 0, face= "bold"),
-        plot.subtitle = element_text(hjust = 0, face= "italic")) 
+  theme(
+    legend.position = "none",
+    plot.title = element_text(hjust = 0, face= "bold"),
+    plot.subtitle = element_text(hjust = 0, face= "italic")
+    ) 
 ```
 ]
 ]
@@ -2046,10 +2125,15 @@ ggplot(penguins,
 .pull-left[
 Grouped barplot of counts using  
 **`position_dodge()`**  
+
 ```{r, echo = FALSE, fig.width= 3, fig.height=3, fig.align = "left"}
 penguins %>% 
-  ggplot(aes(x = island,
-             fill = species)) +
+  ggplot(
+    aes(
+      x = island,
+      fill = species
+      )
+    ) +
   geom_bar(
     position = position_dodge()
     ) +
@@ -2059,6 +2143,7 @@ penguins %>%
 .pull-right[
 Stacked barplot of counts using argument  
 **`position_stack()`** 
+
 ```{r, echo=F, fig.width= 3, fig.height=3, fig.align = "left"}
 penguins %>% 
   ggplot(aes(x = island,
@@ -2074,8 +2159,12 @@ penguins %>%
 .pull-left[.footnotesize[
 ```{r, echo = T, eval=F}
 penguins %>% 
-  ggplot(aes(x = island,
-             fill = species)) +
+  ggplot(
+    aes(
+      x = island,
+      fill = species
+      )
+    ) +
   geom_bar(
     position = position_dodge()
     ) +
@@ -2086,8 +2175,11 @@ penguins %>%
 .pull-right[.footnotesize[
 ```{r, echo=T, eval=F}
 penguins %>% 
-  ggplot(aes(x = island,
-             fill = species)) +
+  ggplot(
+    aes(
+      x = island,
+      fill = species)
+    ) +
   geom_bar(
     position = position_stack()
     ) +
@@ -2102,12 +2194,16 @@ penguins %>%
 
 .pull-left[
 
-- Switch to barplot with relative frequencies using **`position_fill()`**  
+- Switch to relative frequencies using **`position_fill()`**  
 
 ```{r, eval = FALSE}
 penguins %>% 
-  ggplot(aes(x = island,
-             fill = species)) +
+  ggplot(
+    aes(
+      x = island,
+      fill = species
+      )
+    ) +
   geom_bar(
     position = position_fill()
     ) +
@@ -2135,22 +2231,25 @@ penguins %>%
 - Add "fill" colors using **`scale_fill_brewer()`**  
 - Remove additional space using **`coord_cartesian(expand=FALSE)`**  
 
-.font50[
+.font40[
 ```{r, eval = FALSE}
 penguins %>% 
-  ggplot(aes(x = island,
-             fill = species)) +
+  ggplot(
+    aes(
+      x = island,
+      fill = species
+      )
+    ) +
   geom_bar(
     position = position_fill(),
     alpha = .9
     ) +
-  ## Add text to bars
-  geom_text(aes(label = ..count..),
-            stat = "count",
-            colour = "white",
-            position = position_fill(vjust = 0.5)
-            ) +
-  ## Add "fill" colors
+  geom_text(
+    aes(label = ..count..),
+    stat = "count",
+    colour = "white",
+    position = position_fill(vjust = 0.5)
+    ) +
   scale_fill_brewer(
     type = "qual", 
     palette = 6
@@ -2162,16 +2261,17 @@ penguins %>%
     subtitle = "Distribution of penguin species by island",
     fill = "Species"
   ) +
-  ## Remove additional space around plot 
   coord_cartesian(expand = FALSE) +
   theme_minimal() + 
-  theme(plot.title = element_text(size = 20, face = "bold"),
-        plot.subtitle = element_text(size = 16, face = "italic"),
-        axis.title = element_blank(),
-        axis.text.x = element_text(size = 14, face = "bold"),
-        legend.title = element_text(face = "bold"),
-        panel.grid.minor = element_blank(),
-        panel.grid.major.x = element_blank())
+  theme(
+    plot.title = element_text(size = 20, face = "bold"),
+    plot.subtitle = element_text(size = 16, face = "italic"),
+    axis.title = element_blank(),
+    axis.text.x = element_text(size = 14, face = "bold"),
+    legend.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank()
+    )
 ```
 ]
 ]
@@ -2309,9 +2409,7 @@ knitr::include_graphics("img/extensions.png")
 
 ---
 
-## Data visualisation resources
-
-**Which visualisation to use?**   
+## Which visualisation to use?
 
 .pull-left[
 .center[
@@ -2351,6 +2449,7 @@ knitr::include_graphics("img/cedric.png")
 ## In need of help?
 
 .pull-left[**Don't forget RStudio's help-function!**
+<br>
 ```{r, echo=FALSE, out.height = "70%", out.width="70%"}
 knitr::include_graphics("img/help.png")
 ```
@@ -2360,7 +2459,11 @@ knitr::include_graphics("img/help.png")
 **Google is your best fRiend...**
 
 Just google your question and you'll find code, examples, ...
+
+**Generative AI can help as well!**
 ]
+
+
 
 ---
 class: inverse-green, center, middle
@@ -2388,9 +2491,14 @@ name: appendix1
 library(ggdist)
 
 P1 <- 
-  ggplot(penguins, aes(x = species, y = flipper_length_mm)) + 
-  stat_halfeye(
-  ) 
+  ggplot(
+    penguins, 
+    aes(
+      x = species,
+      y = flipper_length_mm
+      )
+    ) + 
+  stat_halfeye() 
 
 P1
 ```
@@ -2419,7 +2527,13 @@ P1
 .footnotesize[
 ```{r, eval = F, echo = T, fig.align = "center", fig.width=5.5, fig.height=5.5}
 P1 <- 
-  ggplot(penguins, aes(x = species, y = flipper_length_mm)) + 
+  ggplot(
+    penguins, 
+    aes(
+      x = species, 
+      y = flipper_length_mm
+      )
+    ) + 
   stat_halfeye(
     adjust = .5, 
     width = .6, 
@@ -2496,8 +2610,10 @@ P3 <- P2 +
     size = 1.3,
     alpha = .3,
     position = position_jitter(
-      seed = 1, width = .1
-  )) 
+      seed = 1,
+      width = .1
+      )
+    ) 
 
 P3
 ```
@@ -2567,9 +2683,11 @@ P5 <- P4 +
   coord_cartesian(xlim = c(1.2, NA), clip = "off") +
   coord_flip() +
   theme_minimal() +
-  theme(plot.title.position = "plot",
-        plot.title = element_text(face = "bold"),
-        plot.subtitle = element_text(face = "italic"))
+  theme(
+    plot.title.position = "plot",
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(face = "italic")
+    )
 
 P5
 ```

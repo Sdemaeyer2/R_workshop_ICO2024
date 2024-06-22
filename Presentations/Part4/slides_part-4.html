@@ -3,11 +3,11 @@
   <head>
     <title>Workshop R &amp; RStudio</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.17/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
-    <link href="libs/panelset-0.3.0/panelset.css" rel="stylesheet" />
-    <script src="libs/panelset-0.3.0/panelset.js"></script>
+    <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.2.6/panelset.js"></script>
     <link rel="stylesheet" href="extra.css" type="text/css" />
   </head>
   <body>
@@ -96,7 +96,7 @@ name: part1
 
 ## Plots in .UA-red[`base`] 
 
-<style>:root{--panel-tab-active-foreground:#AAAA17;--panel-tab-hover-foreground:#d22;--panel-tab-font-family:Roboto;}</style>
+<style>.panelset{--panel-tab-active-foreground: #AAAA17;--panel-tab-hover-foreground: #d22;--panel-tab-font-family: Roboto;}</style>
 
 .panelset[
 .panel[.panel-name[.SW-greenD[`plot()`]]
@@ -123,9 +123,11 @@ plot(table(Friends$condition))
 .panel[.panel-name[`boxplot()`]
 
 ```r
-boxplot(Friends$fluency,
-        main = "Boxplot of the variable 'fluency'", 
-        col = "steelblue") 
+boxplot(
+  Friends$fluency,
+  main = "Boxplot of the variable 'fluency'", 
+  col = "steelblue"
+  ) 
 ```
 
 &lt;img src="slides_part-4_files/figure-html/unnamed-chunk-4-1.png" width="360" style="display: block; margin: auto;" /&gt;
@@ -133,10 +135,12 @@ boxplot(Friends$fluency,
 .panel[.panel-name[`hist()`]
 
 ```r
-hist(Friends$fluency,
-     main = "Histogram of the variable 'fluency'", 
-     freq = FALSE, 
-     ylim = c(0, .08)) 
+hist(
+  Friends$fluency,
+  main = "Histogram of the variable 'fluency'",
+  freq = FALSE,
+  ylim = c(0, .08)
+  ) 
 ```
 
 &lt;img src="slides_part-4_files/figure-html/unnamed-chunk-5-1.png" width="360" style="display: block; margin: auto;" /&gt;
@@ -224,15 +228,75 @@ _Slide by [Tanya Shapiro](https://twitter.com/tanya_shapiro/status/1576935152575
 
 - Data is not only raw data, but can also be the results from an analysis
   
-
-|group     |country |gender | mean_age| SD_age| CI_lower| CI_upper|
-|:---------|:-------|:------|--------:|------:|--------:|--------:|
-|BE Male   |BE      |Male   |       39|   11.0|    17.44|    60.56|
-|BE Female |BE      |Female |       41|   13.2|    15.13|    66.87|
-|BE Other  |BE      |Other  |       36|    8.2|    19.93|    52.07|
-|NL Male   |NL      |Male   |       37|   12.0|    13.48|    60.52|
-|NL Female |NL      |Female |       36|   14.0|     8.56|    63.44|
-|NL Other  |NL      |Other  |       31|    7.2|    16.89|    45.11|
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; group &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; country &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; gender &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; mean_age &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; SD_age &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; CI_lower &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; CI_upper &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; BE Male &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; BE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Male &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 39 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 60.56 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; BE Female &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; BE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Female &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 41 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15.13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 66.87 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; BE Other &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; BE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Other &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 36 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19.93 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 52.07 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NL Male &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NL &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Male &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 37 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.48 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 60.52 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NL Female &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NL &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Female &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 36 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.56 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 63.44 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; NL Other &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NL &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Other &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 45.11 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;br&gt;  
 
@@ -331,21 +395,123 @@ data("penguins")
 
 ## Time to get the penguins in...
 
-
-Table: Table 1. Random sample of 10 observations from the Palmer Pinguins dataset
-
-|species   |island    | bill_length_mm| bill_depth_mm| flipper_length_mm| body_mass_g|sex    | year|
-|:---------|:---------|--------------:|-------------:|-----------------:|-----------:|:------|----:|
-|Chinstrap |Dream     |           50.6|          19.4|               193|        3800|male   | 2007|
-|Adelie    |Biscoe    |           41.1|          18.2|               192|        4050|male   | 2008|
-|Gentoo    |Biscoe    |           49.5|          16.2|               229|        5800|male   | 2008|
-|Gentoo    |Biscoe    |           49.4|          15.8|               216|        4925|male   | 2009|
-|Gentoo    |Biscoe    |           50.1|          15.0|               225|        5000|male   | 2008|
-|Gentoo    |Biscoe    |           49.9|          16.1|               213|        5400|male   | 2009|
-|Adelie    |Dream     |           36.9|          18.6|               189|        3500|female | 2008|
-|Adelie    |Torgersen |           34.6|          17.2|               189|        3200|female | 2008|
-|Adelie    |Biscoe    |           41.0|          20.0|               203|        4725|male   | 2009|
-|Adelie    |Biscoe    |           41.6|          18.0|               192|        3950|male   | 2008|
+&lt;table&gt;
+&lt;caption&gt;Table 1. Random sample of 10 observations from the Palmer Pinguins dataset&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; species &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; island &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; bill_length_mm &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; bill_depth_mm &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; flipper_length_mm &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; body_mass_g &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; sex &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; year &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Adelie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Biscoe &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 36.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 181 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2850 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; female &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2008 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Gentoo &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Biscoe &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 45.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 215 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5000 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; female &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2007 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Gentoo &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Biscoe &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 42.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 215 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5000 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; female &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2007 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Gentoo &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Biscoe &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2009 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Chinstrap &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Dream &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 49.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 195 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4400 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; male &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2007 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Adelie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Torgersen &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 191 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3800 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; male &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2007 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Adelie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Torgersen &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 39.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 191 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3050 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; female &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2009 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Chinstrap &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Dream &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 47.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 185 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3700 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; female &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2007 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Adelie &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Torgersen &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 41.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 202 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3875 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; male &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2009 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Gentoo &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Biscoe &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 43.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 220 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4700 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; female &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2008 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
 
@@ -531,10 +697,12 @@ Can you think of some?]
 .pull-left[.footnotesize[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = species
+    )
+  ) +
   geom_bar()
 
 # stat_count() does the counting automatically 
@@ -544,14 +712,17 @@ ggplot(penguins,
 .pull-right[.footnotesize[
 
 ```r
-count_data &lt;- penguins %&gt;%
+count_data &lt;- 
+  penguins %&gt;%
   count(species, name = 'count')
 
-ggplot(count_data,
-       aes(
-         x = species,
-         y = count
-       )) +
+ggplot(
+  count_data,
+  aes(
+    x = species,
+    y = count
+    )
+  ) +
   geom_col()
 ```
 ]
@@ -568,10 +739,12 @@ ggplot(count_data,
 .footnotesize[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = species
+    )
+  ) +
   geom_bar(
     ## Additional aesthetic: "fill"-scale
     aes(fill = species) 
@@ -590,15 +763,17 @@ ggplot(penguins,
 
 .pull-left[
 
-- Determine "fill"-colors by adding **`scale_fill_manual()`**
+- Determine `fill`-colors by adding **`scale_fill_manual()`**
 
 .footnotesize[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = species
+    )
+  ) +
   geom_bar(
     aes(fill = species)
     ) +
@@ -625,15 +800,17 @@ ggplot(penguins,
 .footnotesize[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = species
+    )
+  ) +
   geom_bar(
-    aes(fill = species)
-    ) +
+    aes(fill = species)    ) +
   scale_fill_manual(
-    values = c("darkorange","purple","cyan4")
+    values =
+      c("darkorange","purple","cyan4")
     ) +
   ## Add title, subtitle and label x-axis
   labs(
@@ -660,15 +837,18 @@ ggplot(penguins,
 .footnotesize[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = species
+    )
+  ) +
   geom_bar(
     aes(fill = species)
     ) +
   scale_fill_manual(
-    values = c("darkorange","purple","cyan4")
+    values =
+      c("darkorange","purple","cyan4")
     ) +
   labs(
     title = "Palmer penguins",
@@ -697,10 +877,12 @@ ggplot(penguins,
 .footnotesize[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = species
+    )
+  ) +
   geom_bar(
     aes(fill = species)
     ) +
@@ -740,18 +922,27 @@ Use two *geoms*: .UA-red[**`geom_point()`**] and .UA-red[**`geom_segment()`**]
 ```r
 penguins %&gt;% 
   count(species) %&gt;% 
-  ggplot(aes(x = species, y = n)) + 
+  ggplot(
+    aes(
+      x = species, 
+      y = n)
+    ) + 
   geom_point( 
     aes(col = species) 
   ) +  
   geom_segment(  
-    aes(x = species, xend = species, 
-        y = 0, yend = n, col = species)
+    aes(
+      x = species,
+      xend = species, 
+      y = 0, 
+      yend = n, 
+      col = species
+      )
     ) + 
 ```
 ]
 
-Reuse remainder of the code!  
+Re-use remainder of code!  
 
 .font50[
 
@@ -798,8 +989,13 @@ penguins %&gt;%
     aes(col = species) 
   ) + 
   geom_segment(  
-    aes(x = species, xend = species, 
-        y = 0, yend = n, col = species) 
+    aes(
+      x = species,
+      xend = species, 
+      y = 0, 
+      yend = n,
+      col = species
+      ) 
     ) + 
   scale_fill_manual(
     values = c("darkorange","purple","cyan4")
@@ -811,7 +1007,9 @@ penguins %&gt;%
   ) +  
   coord_flip( ) + 
   theme_minimal( ) +
-  theme(legend.position = "none") 
+  theme(
+    legend.position = "none"
+    ) 
 ```
 ]
 ]
@@ -888,10 +1086,12 @@ Can you think of some?]
 .footnotesize[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = flipper_length_mm,
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = flipper_length_mm
+    )
+  ) +
   geom_histogram()
 ```
 ]
@@ -912,10 +1112,12 @@ ggplot(penguins,
 .footnotesize[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = flipper_length_mm,
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = flipper_length_mm
+    )
+  ) +
   geom_histogram() +
   ## Specify breaks
   scale_y_continuous( 
@@ -943,11 +1145,13 @@ ggplot(penguins,
 .font60[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = flipper_length_mm,
-         fill = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = flipper_length_mm,
+    fill = species
+    )
+  ) +
   geom_histogram(
     ## Change transparency of points
     alpha = .7 
@@ -957,7 +1161,8 @@ ggplot(penguins,
     breaks = c(seq(0, 25, 5), 29) 
     ) + 
   scale_fill_manual(
-    values = c("darkorange","purple","cyan4")
+    values =
+      c("darkorange","purple","cyan4")
     ) +
   labs(
     title = "Palmer penguins",
@@ -988,11 +1193,13 @@ ggplot(penguins,
 .footnotesize[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = flipper_length_mm,
-         fill = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = flipper_length_mm,
+    fill = species
+    )
+  ) +
   ## Use geom_density
   geom_density(
     alpha = .7
@@ -1004,7 +1211,8 @@ ggplot(penguins,
     title = "Palmer penguins",
     subtitle = "Density plot of flipper length",
     x = "Flipper length"
-  ) + theme_minimal()
+  ) + 
+  theme_minimal()
 ```
 .left[.font70[
 &lt;sup&gt;*°*&lt;/sup&gt;*surface below curve = 100%*
@@ -1026,11 +1234,13 @@ ggplot(penguins,
 .footnotesize[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = flipper_length_mm,
-         color = species 
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = flipper_length_mm,
+    color = species
+    )
+  ) +
   geom_density() + 
   ## Replace scale_color with scale_fill
   scale_color_manual( 
@@ -1042,7 +1252,9 @@ ggplot(penguins,
     x = "Flipper length"
   ) + 
   theme_minimal() +
-  theme(panel.grid.minor = element_blank())
+  theme(
+    panel.grid.minor = element_blank()
+    )
 ```
 ]
 ]
@@ -1056,22 +1268,23 @@ ggplot(penguins,
 ## Or even better ... .UA-red[`geom_violin()` + `geom_jitter()`]
 
 .pull-left[
-.footnotesize[
+.font50[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = species,
-         y = flipper_length_mm,
-         ## Aesthetics fill and color applied to EVERY geom
-         fill = species,
-         color = species
-       )) +
-  ## Use geom_violin
+ggplot(
+  penguins,
+  aes(
+    x = species,
+    y = flipper_length_mm,
+    ## Aesthetics fill and color applied to EVERY geom
+    fill = species,
+    color = species
+    )
+  ) +
+  ## Use geom_violin and geom_jitter
   geom_violin(
     alpha = .65
   ) +
-  ## Use geom_jitter
   geom_jitter(
     alpha = .7
   ) +
@@ -1084,9 +1297,13 @@ ggplot(penguins,
   labs(
     title = "Palmer penguins",
     subtitle = "Density plot voor flipper lengte",
-    y = "Flipper lengte",
+    y = "Flipper length",
     x = "",
-  ) + theme_minimal() + theme(legend.position = "none")
+  ) + 
+  theme_minimal() +
+  theme(
+    legend.position = "none"
+    )
 ```
 ]
 ]
@@ -1103,16 +1320,18 @@ ggplot(penguins,
 - Put names of species on top using argument **`position="top"`**   
 - Remove minor grid lines using argument **`panel.grid.major = element_blank()`**
 
-.font50[
+.font40[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = species,
-         y = flipper_length_mm,
-         fill = species,
-         color = species
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = species,
+    y = flipper_length_mm,
+    fill = species,
+    color = species
+    )
+  ) +
   geom_violin(
     alpha = .65
   ) +
@@ -1120,7 +1339,6 @@ ggplot(penguins,
     alpha = .7
   ) +
   scale_x_discrete(
-    ## Put x-axis labels on top
     position = "top"
     ) +
   scale_fill_manual(
@@ -1134,11 +1352,14 @@ ggplot(penguins,
     subtitle = "Density plot of flipper length",
     y = "Flipper length",
     x = "",
-  ) + theme_minimal() + 
-  theme(legend.position = "none",
-        panel.grid.minor = element_blank(),
-        ## Remove major grid lines
-        panel.grid.major.x = element_blank()) 
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    ## Remove major grid lines
+    panel.grid.major.x = element_blank()
+    ) 
 ```
 ]
 ]
@@ -1266,11 +1487,13 @@ We focus today upon:
 .footnotesize[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = body_mass_g,
-         y = flipper_length_mm
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = body_mass_g,
+    y = flipper_length_mm
+    )
+  ) +
   geom_point() +
   labs(
     title = "Palmer penguins",
@@ -1279,7 +1502,9 @@ ggplot(penguins,
     x = "Body mass",
   ) + 
   theme_minimal() + 
-  theme(legend.position = "none")
+  theme(
+    legend.position = "none"
+    )
 ```
 ]
 ]
@@ -1294,15 +1519,17 @@ ggplot(penguins,
 .pull-left[
 .footnotesize[
 
-- Add trend line by adding **`geom_smooth()`**  
+- Add trend line using **`geom_smooth()`**  
 
 
 ```r
-ggplot(penguins,
-       aes(
-         x = body_mass_g,
-         y = flipper_length_mm
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = body_mass_g,
+    y = flipper_length_mm
+    )
+  ) +
   geom_point() +
   ## Add a trendline
   geom_smooth() +
@@ -1313,7 +1540,9 @@ ggplot(penguins,
     x = "Body mass"
   ) + 
   theme_minimal() + 
-  theme(legend.position = "none")
+  theme(
+    legend.position = "none"
+    )
 ```
 ]
 ]
@@ -1328,20 +1557,22 @@ ggplot(penguins,
 
 .pull-left[
 
-- Linear trend line by adding argument **`method = "lm"`**      
+- Linear trend line using argument **`method = "lm"`**      
 - Remove confidence intervals using argument **`se = FALSE`**    
 
 .footnotesize[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = body_mass_g,
-         y = flipper_length_mm
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = body_mass_g,
+    y = flipper_length_mm
+    )
+  ) +
   geom_point() +
   geom_smooth( 
-    ## Add a linear trend line
+    ## Add linear trend line
     method = "lm", 
     ## Remove confidence band
     se = FALSE 
@@ -1353,7 +1584,9 @@ ggplot(penguins,
     x = "Body mass",
   ) + 
   theme_minimal() + 
-  theme(legend.position = "none")
+  theme(
+    legend.position = "none"
+    )
 ```
 ]
 ]
@@ -1368,24 +1601,31 @@ ggplot(penguins,
 
 .pull-left[
 
-- Add shape and color by specifying additional *aesthetics*: **`shape`** and **`color`**  
-- Change legend position and background, change position of plot title, and layout  (sub)title   
+- Add shape and color by specifying *aesthetics*: **`shape`** and **`color`**  
+- Change legend position and background, position of plot title, and layout  of (sub)title   
 
-.font50[
+.font40[
 
 ```r
-ggplot(data = penguins,
-       aes(x = flipper_length_mm,
-           y = body_mass_g)) +
-  geom_point(aes(color = species,
-                 ## Additional aesthetic: "shape"
-                 shape = species), 
-             size = 3,
-             alpha = 0.8) +
+ggplot(
+  penguins,
+  aes(
+    x = flipper_length_mm,
+    y = body_mass_g
+    )
+  ) +
+  geom_point(
+    aes(
+      color = species,
+      shape = species
+      ),
+    size = 3,
+    alpha = 0.8
+    ) +
   geom_smooth(
-    ## Additional aesthetic: "color"
-    aes(color = species), 
-    se = F, method = "lm"
+    aes(color = species),
+    se = F, 
+    method = "lm"
     ) +
   theme_minimal() +
   scale_color_manual(
@@ -1397,15 +1637,13 @@ ggplot(data = penguins,
     x = "Body mass",
     color = "Species", 
     shape = "Species") + 
-  theme(## Change position legend
-        legend.position = c(0.2, 0.7), 
-        ## Change background legend
-        legend.background = element_rect(fill = "white", color = NA), 
-        ## Change position of plot title
-        plot.title.position = "plot",
-        ## Change layout of plot (sub)title 
-        plot.title = element_text(hjust = 0, face= "bold"),
-        plot.subtitle = element_text(hjust = 0, face= "italic")) 
+  theme(
+    legend.position = c(0.2, 0.7), 
+    legend.background = element_rect(fill = "white", color = NA),
+    plot.title.position = "plot",
+    plot.title = element_text(hjust = 0, face= "bold"),
+    plot.subtitle = element_text(hjust = 0, face= "italic")
+    ) 
 ```
 ]
 ]
@@ -1422,20 +1660,21 @@ ggplot(data = penguins,
 
 - Adds facets using **`facet_wrap()`**  
 
-.font50[
+.font60[
 
 ```r
-ggplot(penguins,
-       aes(
-         x = body_mass_g,
-         y = flipper_length_mm
-       )) +
+ggplot(
+  penguins,
+  aes(
+    x = body_mass_g,
+    y = flipper_length_mm
+    )
+  ) +
   geom_point( ) +
   geom_smooth(
     method = "lm",
     se = FALSE
   ) +
-  ## Add facets
   facet_wrap(~species) + 
   labs(
     title = "Palmer penguins",
@@ -1444,9 +1683,11 @@ ggplot(penguins,
     x = "Body mass",
   ) + 
   theme_minimal() + 
-  theme(legend.position = "none",
-        plot.title = element_text(hjust = 0, face= "bold"),
-        plot.subtitle = element_text(hjust = 0, face= "italic")) 
+  theme(
+    legend.position = "none",
+    plot.title = element_text(hjust = 0, face= "bold"),
+    plot.subtitle = element_text(hjust = 0, face= "italic")
+    ) 
 ```
 ]
 ]
@@ -1462,11 +1703,13 @@ ggplot(penguins,
 .pull-left[
 Grouped barplot of counts using  
 **`position_dodge()`**  
+
 &lt;img src="slides_part-4_files/figure-html/unnamed-chunk-75-1.png" width="216" style="display: block; margin: auto auto auto 0;" /&gt;
 ]
 .pull-right[
 Stacked barplot of counts using argument  
 **`position_stack()`** 
+
 &lt;img src="slides_part-4_files/figure-html/unnamed-chunk-76-1.png" width="216" style="display: block; margin: auto auto auto 0;" /&gt;
 ]
 
@@ -1475,8 +1718,12 @@ Stacked barplot of counts using argument
 
 ```r
 penguins %&gt;% 
-  ggplot(aes(x = island,
-             fill = species)) +
+  ggplot(
+    aes(
+      x = island,
+      fill = species
+      )
+    ) +
   geom_bar(
     position = position_dodge()
     ) +
@@ -1488,8 +1735,11 @@ penguins %&gt;%
 
 ```r
 penguins %&gt;% 
-  ggplot(aes(x = island,
-             fill = species)) +
+  ggplot(
+    aes(
+      x = island,
+      fill = species)
+    ) +
   geom_bar(
     position = position_stack()
     ) +
@@ -1504,13 +1754,17 @@ penguins %&gt;%
 
 .pull-left[
 
-- Switch to barplot with relative frequencies using **`position_fill()`**  
+- Switch to relative frequencies using **`position_fill()`**  
 
 
 ```r
 penguins %&gt;% 
-  ggplot(aes(x = island,
-             fill = species)) +
+  ggplot(
+    aes(
+      x = island,
+      fill = species
+      )
+    ) +
   geom_bar(
     position = position_fill()
     ) +
@@ -1530,23 +1784,26 @@ penguins %&gt;%
 - Add "fill" colors using **`scale_fill_brewer()`**  
 - Remove additional space using **`coord_cartesian(expand=FALSE)`**  
 
-.font50[
+.font40[
 
 ```r
 penguins %&gt;% 
-  ggplot(aes(x = island,
-             fill = species)) +
+  ggplot(
+    aes(
+      x = island,
+      fill = species
+      )
+    ) +
   geom_bar(
     position = position_fill(),
     alpha = .9
     ) +
-  ## Add text to bars
-  geom_text(aes(label = ..count..),
-            stat = "count",
-            colour = "white",
-            position = position_fill(vjust = 0.5)
-            ) +
-  ## Add "fill" colors
+  geom_text(
+    aes(label = ..count..),
+    stat = "count",
+    colour = "white",
+    position = position_fill(vjust = 0.5)
+    ) +
   scale_fill_brewer(
     type = "qual", 
     palette = 6
@@ -1558,16 +1815,17 @@ penguins %&gt;%
     subtitle = "Distribution of penguin species by island",
     fill = "Species"
   ) +
-  ## Remove additional space around plot 
   coord_cartesian(expand = FALSE) +
   theme_minimal() + 
-  theme(plot.title = element_text(size = 20, face = "bold"),
-        plot.subtitle = element_text(size = 16, face = "italic"),
-        axis.title = element_blank(),
-        axis.text.x = element_text(size = 14, face = "bold"),
-        legend.title = element_text(face = "bold"),
-        panel.grid.minor = element_blank(),
-        panel.grid.major.x = element_blank())
+  theme(
+    plot.title = element_text(size = 20, face = "bold"),
+    plot.subtitle = element_text(size = 16, face = "italic"),
+    axis.title = element_blank(),
+    axis.text.x = element_text(size = 14, face = "bold"),
+    legend.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank()
+    )
 ```
 ]
 ]
@@ -1663,9 +1921,7 @@ name: part7
 
 ---
 
-## Data visualisation resources
-
-**Which visualisation to use?**   
+## Which visualisation to use?
 
 .pull-left[
 .center[
@@ -1697,6 +1953,7 @@ name: part7
 ## In need of help?
 
 .pull-left[**Don't forget RStudio's help-function!**
+&lt;br&gt;
 &lt;img src="img/help.png" width="70%" height="70%" /&gt;
 ]
 
@@ -1704,7 +1961,11 @@ name: part7
 **Google is your best fRiend...**
 
 Just google your question and you'll find code, examples, ...
+
+**Generative AI can help as well!**
 ]
+
+
 
 ---
 class: inverse-green, center, middle
@@ -1733,9 +1994,14 @@ name: appendix1
 library(ggdist)
 
 P1 &lt;- 
-  ggplot(penguins, aes(x = species, y = flipper_length_mm)) + 
-  stat_halfeye(
-  ) 
+  ggplot(
+    penguins, 
+    aes(
+      x = species,
+      y = flipper_length_mm
+      )
+    ) + 
+  stat_halfeye() 
 
 P1
 ```
@@ -1756,7 +2022,13 @@ P1
 
 ```r
 P1 &lt;- 
-  ggplot(penguins, aes(x = species, y = flipper_length_mm)) + 
+  ggplot(
+    penguins, 
+    aes(
+      x = species, 
+      y = flipper_length_mm
+      )
+    ) + 
   stat_halfeye(
     adjust = .5, 
     width = .6, 
@@ -1815,8 +2087,10 @@ P3 &lt;- P2 +
     size = 1.3,
     alpha = .3,
     position = position_jitter(
-      seed = 1, width = .1
-  )) 
+      seed = 1,
+      width = .1
+      )
+    ) 
 
 P3
 ```
@@ -1868,9 +2142,11 @@ P5 &lt;- P4 +
   coord_cartesian(xlim = c(1.2, NA), clip = "off") +
   coord_flip() +
   theme_minimal() +
-  theme(plot.title.position = "plot",
-        plot.title = element_text(face = "bold"),
-        plot.subtitle = element_text(face = "italic"))
+  theme(
+    plot.title.position = "plot",
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(face = "italic")
+    )
 
 P5
 ```
