@@ -112,8 +112,8 @@ github: https://github.com/Sdemaeyer2
 
 .pull-left[
 **About Tine?**
-- *Research interests?* .font80[Eye-tracking, temporal analysis, comparative judgement, replication studies, data visualisation, learning from complementary texts...]
-- *Main focus?* .font80[Using eye-tracking to capture cognitive processing, temporal analysis, learning analytics]
+- *Research interests?* .font80[Comparative judgement, learning from complementary texts, assessment with technology, replication studies, data visualisation, ...]
+- *Main focus?* .font80[(Peer) assessment, learning processes, educational technology, learning analytics]
 <br> 
 <br>  
 Twitter: @TinevanDaal  
