@@ -1746,7 +1746,7 @@ class: inverse-blue
 ![](https://media.giphy.com/media/A9grgCQ0Dm012/giphy.gif)
 ]
 .right-column[
-- You can find the qmd-file .SW-greenD[ `Exercises_ggplot2.qmd`] on the Open Science Framework (Exercises > Exercise3_ggplot2)
+- You can find the qmd-file .SW-greenD[ `Exercises_ggplot2.qmd`] at the course website.
 
 - Download this file to your laptop
 
@@ -2340,7 +2340,7 @@ class: inverse-blue
 ![](https://media.giphy.com/media/A9grgCQ0Dm012/giphy.gif)
 ]
 .right-column[
-- You can find the qmd-file .SW-greenD[ `Exercises_ggplot2.qmd`] on the Open Science Framework (Exercises > Exercise3_ggplot2)
+- You can find the qmd-file .SW-greenD[ `Exercises_ggplot2.qmd`] at the course website.
 
 - Download this file to your laptop
 
