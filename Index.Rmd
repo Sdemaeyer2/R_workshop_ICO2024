@@ -118,7 +118,7 @@ These will be topics covered:
 
 #### Slides
 
-The htlm-version of the slides for this part can be found <a href="Presentations/Part2/Slides_part2.html" target="blank">here</a>
+The htlm-version of the slides for this part can be found <a href="Presentations/Part2/Slides_Part2.html" target="blank">here</a>
 
 #### Data
 
