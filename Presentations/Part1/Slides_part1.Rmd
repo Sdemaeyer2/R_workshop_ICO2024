@@ -167,7 +167,8 @@ Various types of files:
 
 <br>
 
-All these files can be found at the **Open Science Framework**
+All these files can be found at the dedicated web-page: 
+<https://icoworkshop-rstudio-2024.netlify.app/#quick-overview>
 
 ---
 
@@ -322,7 +323,7 @@ knitr::include_graphics("img/RStudio2.png")
 <i class="fas fa-angle-double-right" style="color: #FF0035;"></i> .red[*In case you haven't already installed `RStudio`. Do it now! Are you stuck? Let us know.*]
 ] 
 
-]
+
 ---
 class: inverse-green, center, middle
 name: part4
@@ -405,7 +406,7 @@ class: inverse-blue, center, middle
 ]
 .small[You can find the code on the next slides.
 
-There is also a script `Fruit.R` that contains the same code (see `Dropbox/VLHORA_R_2021/R_scripts`)]
+There is also a script `Fruit.R` that contains the same code (see course material for Part 1 online)]
 ]
 
 ---
@@ -437,7 +438,7 @@ We can also check the structure of the object _.UA-blue[Fruit]_ by using the **.
 str(Fruit)
 ```
 ]
-]
+
 
 ---
 ### <i class="fas fa-code" style="color: #FF0035;"></i> .SW-greenD[Code-Blocks: numeric vector]
@@ -705,7 +706,7 @@ class: inverse-blue, center, middle
 
 <br>
 
-.small[You can find the folder `Exercises` at the Open Science Framework. Download this folder and put it somewhere on your laptop.]
+.small[You can find the folder `Exercises` at the Github: <https://github.com/Sdemaeyer2/R_workshop_ICO2024/>. Download this folder and put it somewhere on your laptop.]
 ]
 ]
 

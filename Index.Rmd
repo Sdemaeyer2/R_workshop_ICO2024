@@ -65,9 +65,9 @@ In the course we will schedule some time to work with your own research data (or
 
 | When?  | 
 |:--------|
-| Tuesday July 2 (10 am - 17:00 am) | 
-| Wednesday July 3 (10 am - 17:00 am) | 
-| Thursday July 4  (10 am - 17:00 am) | 
+| Tuesday July 2 (10 am - 17:00 pm) | 
+| Wednesday July 3 (10 am - 17:00 pm) | 
+| Thursday July 4  (10 am - 17:00 pm) | 
 
 Vergadercentrum Vredenburg, Vredenburg 19, Utrecht
 
@@ -94,6 +94,9 @@ Following topics will be discussed:
 
 The htlm-version of the slides for this first part can be found <a href="Presentations/Part1/Slides_part1.html" target="blank">here</a>
 
+#### R script
+
+There is an R-script (`Fruit.R`) that has all the code we used in this first part. Download it <a href="Fruit.R" target="blank">here</a> (Right-click and Save as)
 
 ## Column 2
 
