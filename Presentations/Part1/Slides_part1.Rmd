@@ -113,7 +113,7 @@ github: https://github.com/Sdemaeyer2
 .pull-left[
 **About Tine?**
 - *Research interests?* .font80[Comparative judgement, learning from complementary texts, assessment with technology, replication studies, data visualisation, ...]
-- *Main focus?* .font80[(Peer) assessment, learning processes, educational technology, learning analytics]
+- *Main focus?* .font80[(Peer) assessment, learning (processes), educational technology, learning analytics]
 <br> 
 <br>  
 Twitter: @TinevanDaal  
