@@ -1,0 +1,33 @@
+---
+title: "Extra Exercise"
+format: revealjs
+---
+
+## For those that are ready ...
+
+-   Apply it to your **own research**
+-   Create a project for your study in Rstudio
+-   With a dedicated Folder on your pc
+-   Create a new Quarto document
+-   Try to import your own dataset!
+-   Feeling confident?
+
+     -- Calculate a mean for a variable in your dataset
+
+## Some other slide with fun stuff
+
+<iframe src="https://giphy.com/embed/Ufr8WDHceO0G9xe2bz" width="480" height="480" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/TheDemocrats-democrats-dnc-dncgif-Ufr8WDHceO0G9xe2bz">via GIPHY</a></p>
+
+## Doing fine?
+
+Well, start a Quarto - presentation!
+
+Import your dataset
+
+Make a `plot()` of two numeric variables
+
+e.g., `plot(Dataset$Var1 , Dataset$Var2)`
+
+
+
+

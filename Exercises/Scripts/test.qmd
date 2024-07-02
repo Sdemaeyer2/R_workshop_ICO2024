@@ -1,0 +1,50 @@
+---
+title: "Another test"
+author: "Sven and Tine"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    number-sections: true
+theme: superhero
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+Fruit <- c("Apples", "Bananas", NA)
+```
+
+::: callout-warning
+You can add options to executable code like this `r mean(c(2,3,4))`
+:::
+
+```{r}
+#| echo: false
+Fruit
+```
+
+The `echo: false` option disables the printing of code (only output is displayed). **Another sentence printed in bold.**
+
+::: panel-tabset
+## Task
+
+```{r}
+2*2
+```
+
+
+## Solution
+
+ds;bgqfksdjbg
+
+## Another task
+
+ldkgqslkngdql
+:::
