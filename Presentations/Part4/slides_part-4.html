@@ -3,11 +3,11 @@
   <head>
     <title>Workshop R &amp; RStudio</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.23/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.17/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
-    <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
-    <script src="libs/panelset-0.2.6/panelset.js"></script>
+    <link href="libs/panelset-0.3.0/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.3.0/panelset.js"></script>
     <link rel="stylesheet" href="extra.css" type="text/css" />
   </head>
   <body>
@@ -96,7 +96,7 @@ name: part1
 
 ## Plots in .UA-red[`base`] 
 
-<style>.panelset{--panel-tab-active-foreground: #AAAA17;--panel-tab-hover-foreground: #d22;--panel-tab-font-family: Roboto;}</style>
+<style>:root{--panel-tab-active-foreground:#AAAA17;--panel-tab-hover-foreground:#d22;--panel-tab-font-family:Roboto;}</style>
 
 .panelset[
 .panel[.panel-name[.SW-greenD[`plot()`]]
@@ -228,75 +228,15 @@ _Slide by [Tanya Shapiro](https://twitter.com/tanya_shapiro/status/1576935152575
 
 - Data is not only raw data, but can also be the results from an analysis
   
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; group &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; country &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; gender &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; mean_age &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; SD_age &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; CI_lower &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; CI_upper &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; BE Male &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; BE &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Male &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 39 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 11.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.44 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 60.56 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; BE Female &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; BE &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Female &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 41 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13.2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 15.13 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 66.87 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; BE Other &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; BE &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Other &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 36 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8.2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 19.93 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 52.07 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; NL Male &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NL &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Male &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 37 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 12.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13.48 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 60.52 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; NL Female &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NL &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Female &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 36 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8.56 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 63.44 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; NL Other &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NL &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Other &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.89 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 45.11 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|group     |country |gender | mean_age| SD_age| CI_lower| CI_upper|
+|:---------|:-------|:------|--------:|------:|--------:|--------:|
+|BE Male   |BE      |Male   |       39|   11.0|    17.44|    60.56|
+|BE Female |BE      |Female |       41|   13.2|    15.13|    66.87|
+|BE Other  |BE      |Other  |       36|    8.2|    19.93|    52.07|
+|NL Male   |NL      |Male   |       37|   12.0|    13.48|    60.52|
+|NL Female |NL      |Female |       36|   14.0|     8.56|    63.44|
+|NL Other  |NL      |Other  |       31|    7.2|    16.89|    45.11|
 
 &lt;br&gt;  
 
@@ -395,123 +335,21 @@ data("penguins")
 
 ## Time to get the penguins in...
 
-&lt;table&gt;
-&lt;caption&gt;Table 1. Random sample of 10 observations from the Palmer Pinguins dataset&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; species &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; island &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; bill_length_mm &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; bill_depth_mm &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; flipper_length_mm &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; body_mass_g &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; sex &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; year &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Adelie &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Dream &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 41.1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 190 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3900 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; male &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2009 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Gentoo &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Biscoe &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 44.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 208 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4350 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; female &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2008 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Adelie &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Dream &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 40.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 187 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3475 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; male &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2009 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Gentoo &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Biscoe &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 45.5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13.9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 210 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4200 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; female &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2008 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Chinstrap &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Dream &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 52.7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 19.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 197 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3725 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; male &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2007 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Adelie &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Torgersen &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 38.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 191 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3275 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; female &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2009 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Chinstrap &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Dream &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 45.2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 198 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3950 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; female &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2007 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Adelie &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Dream &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 37.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 19.3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 181 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3300 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; female &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2007 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Adelie &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Biscoe &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 36.5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 181 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2850 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; female &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2008 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Adelie &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; Torgersen &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 39.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 191 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3050 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; female &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2009 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+Table: Table 1. Random sample of 10 observations from the Palmer Pinguins dataset
+
+|species |island    | bill_length_mm| bill_depth_mm| flipper_length_mm| body_mass_g|sex    | year|
+|:-------|:---------|--------------:|-------------:|-----------------:|-----------:|:------|----:|
+|Adelie  |Dream     |           39.6|          18.8|               190|        4600|male   | 2007|
+|Gentoo  |Biscoe    |           51.1|          16.5|               225|        5250|male   | 2009|
+|Gentoo  |Biscoe    |           45.2|          15.8|               215|        5300|male   | 2008|
+|Gentoo  |Biscoe    |           47.5|          15.0|               218|        4950|female | 2009|
+|Adelie  |Dream     |           36.0|          17.1|               187|        3700|female | 2009|
+|Adelie  |Dream     |           36.0|          17.8|               195|        3450|female | 2009|
+|Gentoo  |Biscoe    |           43.8|          13.9|               208|        4300|female | 2008|
+|Adelie  |Biscoe    |           39.6|          20.7|               191|        3900|female | 2009|
+|Adelie  |Torgersen |           46.0|          21.5|               194|        4200|male   | 2007|
+|Adelie  |Dream     |           36.8|          18.5|               193|        3500|female | 2009|
 
 ---
 
@@ -947,7 +785,7 @@ Re-use remainder of code!
 .font50[
 
 ```r
-  scale_fill_manual(
+  scale_colour_manual(
     values = c("darkorange","purple","cyan4")
     ) +
   labs(
@@ -984,7 +822,8 @@ penguins %&gt;%
     species_ord = fct_reorder(species,n) 
     ) %&gt;% 
   ggplot(
-    aes(x = species_ord)) + 
+    aes(x = species_ord,
+        y = n)) + 
   geom_point( 
     aes(col = species) 
   ) + 
@@ -997,7 +836,7 @@ penguins %&gt;%
       col = species
       ) 
     ) + 
-  scale_fill_manual(
+  scale_colour_manual(
     values = c("darkorange","purple","cyan4")
     ) +
   labs(

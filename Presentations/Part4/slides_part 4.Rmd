@@ -1056,7 +1056,7 @@ Re-use remainder of code!
 
 .font50[
 ```{r, eval = FALSE}
-  scale_fill_manual(
+  scale_colour_manual(
     values = c("darkorange","purple","cyan4")
     ) +
   labs(
@@ -1086,7 +1086,7 @@ penguins %>%
       x = species, xend = species, #<<
       y = 0, yend = n, col = species) #<<
     ) + #<<
-  scale_fill_manual(
+  scale_colour_manual(
     values = c("darkorange","purple","cyan4")
     ) +
   labs(
@@ -1118,7 +1118,8 @@ penguins %>%
     species_ord = fct_reorder(species,n) 
     ) %>% 
   ggplot(
-    aes(x = species_ord)) + 
+    aes(x = species_ord,
+        y = n)) + 
   geom_point( 
     aes(col = species) 
   ) + 
@@ -1131,7 +1132,7 @@ penguins %>%
       col = species
       ) 
     ) + 
-  scale_fill_manual(
+  scale_colour_manual(
     values = c("darkorange","purple","cyan4")
     ) +
   labs(
@@ -1164,7 +1165,7 @@ penguins %>%
     aes(x = species, xend = species, 
         y = 0, yend = n, col = species) 
     ) + 
-  scale_fill_manual(
+  scale_colour_manual(
     values = c("darkorange","purple","cyan4")
     ) +
   labs(
