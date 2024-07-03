@@ -161,6 +161,9 @@ For this slideshow, we used a dataset called `Friends.RData`. The data can be do
 
 ### References and resources
 
+On-line interactive course on using `dplyr` can be found here:
+
+<https://allisonhorst.shinyapps.io/dplyr-learnr/#section-welcome>
 
 # Part 4
 
