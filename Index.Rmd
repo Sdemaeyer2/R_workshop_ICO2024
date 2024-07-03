@@ -328,7 +328,10 @@ In need for the cheatsheets? You can find some here:
 
 ### Some free online books `r fontawesome::fa("book")`
 
-**Fundamentals of Data Visualization** by Claus Wilke: <https://clauswilke.com/dataviz/index.html>
+Great book by one of the *founders* of the `tidyverse`, Hadley Wickham. *R for Data Science (2e)*: 
+<https://r4ds.hadley.nz/>
+
+*Fundamentals of Data Visualization* by Claus Wilke: <https://clauswilke.com/dataviz/index.html>
 
 ## Column 2
 
