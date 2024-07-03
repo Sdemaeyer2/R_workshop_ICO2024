@@ -317,17 +317,31 @@ Frumuselu, Anca Daniela, Sven De Maeyer, Vincent Donche, and María del Mar Guti
 
 ## Column 1
 
-### Reading tips
+### Materials on visualisations
 
+Great(est) blog-site about `ggplot2`: <https://www.cedricscherer.com/> 
+
+### Site with all the cheatsheets
+
+In need for the cheatsheets? You can find some here: 
+<https://rstudio.github.io/cheatsheets/>
 
 ### Some free online books `r fontawesome::fa("book")`
 
+**Fundamentals of Data Visualization** by Claus Wilke: <https://clauswilke.com/dataviz/index.html>
 
 ## Column 2
 
-### Online learning material
+### About Quarto
 
+Quarto can be used for much more than just writing single documents. More info on all possibilities of Quarto can be found here:
+<https://quarto.org/docs/guide/>
 
+If you create a file (or a website) that you want to publish on internet there are many ways to do so. More information here:
+<https://quarto.org/docs/publishing/>
+
+You can even create a personal (academic) blog website with Quarto. Great tutorial can be found here:
+<https://www.marvinschmitt.com/blog/website-tutorial-quarto/>
 
 ### Sven's website
 
@@ -335,10 +349,5 @@ When I find the time I write short posts about (Bayesian) statistics. Some of th
 
 <a href="https://sdemaeyer.quarto.pub/posts.html">https://sdemaeyer.quarto.pub/posts.html</a>
 
-### Some example papers
 
-
-
-
-### Article on Bayesian Evidence Interval
 
