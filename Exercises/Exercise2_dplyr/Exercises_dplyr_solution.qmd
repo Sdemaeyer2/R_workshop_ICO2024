@@ -49,7 +49,7 @@ The dataset is an excel file called: `RIASEC.xlsx`.
 ```{r}
 #| eval: true
 #| echo: true
-#| 
+
 library(tidyverse)
 library(here)
 library(readxl)

@@ -20,9 +20,10 @@ data("penguins")
 
 # Some information about the data
 
-The penguins data contains information of `r nrow(penguins)` penguins. The number of penguins is 'calculated' by R in the text. Hence, if you would go back to the islands and measure some additional penguins. You can just rerun the script and the count would adjust itself...  
+The penguins data contains information of `r nrow(penguins)` penguins. The number of penguins is 'calculated' by R in the text. Hence, if you would go back to the islands and measure some additional penguins. You can just rerun the script and the count would adjust itself...
 
 The penguins live on three islands. We want to know how many penguins were observed on each island. So, we apply some of our tidyverse skills.
+
 ```{r}
 ## Count by group
 islands <- penguins %>%
@@ -31,9 +32,12 @@ islands <- penguins %>%
 islands
 ```
 
-Now, we can refer to the values in this data set by indexing! For example, there live `r islands[1,2]` penguins on Biscoe.  This is easy in this case (because the data set is small), but becomes difficult with larger data sets and you can easily make a mistake.  
-To make youR life easier, the package `printy` can be used. (More information can be found at https://www.tjmahr.com/lists-knitr-secret-weapon/) 
+Now, we can refer to the values in this data set by indexing! For example, there live `r islands[1,2]` penguins on Biscoe. This is easy in this case (because the data set is small), but becomes difficult with larger data sets and you can easily make a mistake.\
+To make youR life easier, the package `printy` can be used. (More information can be found at https://www.tjmahr.com/lists-knitr-secret-weapon/)
+
 ```{r}
+# install.packages("remotes")
+# remotes::install_github("tjmahr/printy")
 library(printy)
 
 ## Create a list
@@ -46,33 +50,37 @@ islands_list <- super_split(islands, island)
 #  super_split(island)
 ```
 
-Doing this, we converted the data set to a list of values for each island.  
+Doing this, we converted the data set to a list of values for each island.
+
 ```{r}
 islands_list
 ```
 
-Now, we can refer to the values by using `$` and the name of the island. For example, the number of penguins on Torgersen can be found by using the following code: `islands_list$Torgersen$n`.  Reporting on the number of penguins on each island now become easy.  
+Now, we can refer to the values by using `$` and the name of the island. For example, the number of penguins on Torgersen can be found by using the following code: `islands_list$Torgersen$n`. Reporting on the number of penguins on each island now become easy.
 
-The penguins live on three islands: Biscoe (*n* = `r islands_list$Biscoe$n`), Dream (*n* = `r islands_list$Dream$n`),
-and Torgersen (*n* = `r islands_list$Torgersen$n`). 
+The penguins live on three islands: Biscoe (*n* = `r islands_list$Biscoe$n`), Dream (*n* = `r islands_list$Dream$n`), and Torgersen (*n* = `r islands_list$Torgersen$n`).
 
-# Fitting a linear model  
+# Fitting a linear model
+
 We fit a linear model with `body_mass_g` as dependent variable and `species` and `flipper_length_mm` as independent variable
+
 ```{r}
 ## Fit a linear model
 Model_lm <- lm(body_mass_g ~ flipper_length_mm + species, data = penguins)
 ```
 
-Here is a nice table with the estimates of the model we fitted.   
+Here is a nice table with the estimates of the model we fitted.
+
 ```{r}
 tab_model(Model_lm)
 ```
 
-If we discuss the results of this model we want to refer to the estimates and confidence intervals. To do so, we create a list that contains 4 elements (one for each estimate):  
-- Intercept  
-- flipper_length_mm  
-- speciesChinstrap  
-- speciesGentoo  
+If we discuss the results of this model we want to refer to the estimates and confidence intervals. To do so, we create a list that contains 4 elements (one for each estimate):\
+- Intercept\
+- flipper_length_mm\
+- speciesChinstrap\
+- speciesGentoo
+
 ```{r}
 list_lm <- tidy(Model_lm, conf.int = TRUE) %>%
   ## Remove the brackets around the Intercept-term

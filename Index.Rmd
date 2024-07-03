@@ -130,6 +130,16 @@ The htlm-version of the slides for this part can be found <a href="Presentations
 
 For this part, we will use a very small dataset `Fruit.RData`. The data can be downloaded <a href="Data/MarathonData.RData" target="blank"> here </a> (right-click to save as). 
 
+## Column 2
+
+### Example application
+
+Quarto allows you to create nice documents like *lab-notes* or *walk-throughs*. For instance, I have created this document as an appendix of a paper. This is made with Quarto and is an html page that lives on the internet:
+
+<a href="https://majestic-pixie-28398c.netlify.app/" target="blank"> Walk-through example 1 </a>
+
+<a href="https://gifted-nightingale-d45b7e.netlify.app/#content" target="blank"> Walk-through example 2 </a>
+
 # Part 3
 
 ## Column 1
