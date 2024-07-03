@@ -286,9 +286,9 @@ The instructions for this exercise:
 
 The solutions for this exercise:
 
-- <a href="Exercises/Exercise3_ggplot2/Exercises_ggplot2_solution.qmd" target="blank">As Quarto doc</a> 
+- <a href="Exercises/Exercise3_ggplot2/Exercises_ggplot2_solutions.qmd" target="blank">As Quarto doc</a> 
 
-- <a href="Exercises/Exercise3_ggplot2/Exercises_ggplot2_solution.html" target="blank">As html page</a>
+- <a href="Exercises/Exercise3_ggplot2/Exercises_ggplot2_solutions.html" target="blank">As html page</a>
 
 ### Exercise 4: Integrated exercise
 
@@ -301,9 +301,9 @@ The instructions for this exercise:
 
 The solutions for this exercise:
 
-- <a href="Exercises/Exercise4_all_in_one/Exercises_all_in_one_solution.qmd" target="blank">As Quarto doc</a> 
+- <a href="Exercises/Exercise4_all_in_one/Exercises_all_in_one_solutions.qmd" target="blank">As Quarto doc</a> 
 
-- <a href="Exercises/Exercise4_all_in_one/Exercises_all_in_one_solution.html" target="blank">As html page</a>
+- <a href="Exercises/Exercise4_all_in_one/Exercises_all_in_one_solutions.html" target="blank">As html page</a>
 
 ## Column 2
 
