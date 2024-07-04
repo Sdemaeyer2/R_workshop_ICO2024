@@ -215,13 +215,6 @@ These are the topics covered in this part:
 
 The htlm-version of the slides for this first part can be found <a href="Presentations/Part5/Slides_Part5.html" target="blank">here</a>
 
-#### Data
-
-
-
-#### R scripts
-
-
 ## Column 2
 
 ### References and resources
@@ -313,6 +306,15 @@ The dataset **Friends.sav**, used in some of the exercises, is a simulated datas
 
 Frumuselu, Anca Daniela, Sven De Maeyer, Vincent Donche, and María del Mar Gutiérrez Colon Plana. 2015. “Television Series Inside the EFL Classroom: Bridging the Gap Between Teaching and Learning Informal Language Through Subtitles.” Linguistics and Education 32 (December): 107–17. https://doi.org/10.1016/j.linged.2015.10.001.
 
+# In-line coding
+
+## Column 1 
+
+Now that you know `R` and `Quarto`, we can create lab-reports that even integrate `R-code` within the text itself. For instance, if you want to integrate the results of the calculation of a mean in your text itself it is possible. We created a document that showcases these functionalities.
+
+- <a href="Inline_Rcode.qmd" target="blank">As Quarto doc</a> 
+
+- <a href="Inline_Rcode.html" target="blank">As html page</a>
 # Links
 
 ## Column 1
@@ -332,6 +334,9 @@ Great book by one of the *founders* of the `tidyverse`, Hadley Wickham. *R for D
 <https://r4ds.hadley.nz/>
 
 *Fundamentals of Data Visualization* by Claus Wilke: <https://clauswilke.com/dataviz/index.html>
+
+Tine created an on-line tutorial on `ggplot2` (in Dutch):
+<https://datavisualisatie-met-ggplot2.netlify.app/>
 
 ## Column 2
 

@@ -5,6 +5,9 @@ editor: visual
 ---
 
 ```{r}
+#| error: false
+#| message: false
+
 library(tidyverse) # you know why ;-)
 library(broom)   # for tidying model output
 library(glue)    # for pasting character values
