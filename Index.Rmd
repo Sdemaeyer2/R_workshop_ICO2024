@@ -315,6 +315,7 @@ Now that you know `R` and `Quarto`, we can create lab-reports that even integrat
 - <a href="Inline_Rcode.qmd" target="blank">As Quarto doc</a> 
 
 - <a href="Inline_Rcode.html" target="blank">As html page</a>
+
 # Links
 
 ## Column 1
@@ -322,6 +323,10 @@ Now that you know `R` and `Quarto`, we can create lab-reports that even integrat
 ### Materials on visualisations
 
 Great(est) blog-site about `ggplot2`: <https://www.cedricscherer.com/> 
+
+Tine created an on-line tutorial on `ggplot2` (in Dutch):
+<https://datavisualisatie-met-ggplot2.netlify.app/>
+
 
 ### Site with all the cheatsheets
 
@@ -335,8 +340,6 @@ Great book by one of the *founders* of the `tidyverse`, Hadley Wickham. *R for D
 
 *Fundamentals of Data Visualization* by Claus Wilke: <https://clauswilke.com/dataviz/index.html>
 
-Tine created an on-line tutorial on `ggplot2` (in Dutch):
-<https://datavisualisatie-met-ggplot2.netlify.app/>
 
 ## Column 2
 
