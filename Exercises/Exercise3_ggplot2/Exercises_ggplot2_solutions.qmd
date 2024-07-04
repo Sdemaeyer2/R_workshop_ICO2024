@@ -526,6 +526,8 @@ my_barplot <- penguins %>% filter(!is.na(sex)) %>%
         legend.title = element_text(face = "bold"),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank())
+
+my_barplot
 ```
 
 ## 3.6  Save your plot!  
