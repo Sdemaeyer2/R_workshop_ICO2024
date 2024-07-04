@@ -13,7 +13,6 @@ format:
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
 
-
 # Introduction
 
 Creating your own graphs using `ggplot2` is much more motivating than watching some slides. Time to get started yourself with your recently acquired `ggplot2`-skills!
@@ -50,9 +49,9 @@ data("penguins")
 
 # Load some additional packages
 
-Throughout the exercises, we will use two additional packages:    
-- `tidyverse`: to manipulate data  
-- `patchwork`: to combine plots  
+Throughout the exercises, we will use two additional packages:\
+- `tidyverse`: to manipulate data\
+- `patchwork`: to combine plots
 
 💡 *Don't forget to install these packages first (if you haven't done so already)*
 
@@ -98,7 +97,7 @@ penguins %>%
 
 ## 1.2 Add colors, titles and labels
 
-Now that you have created your first barplot, it is time to add some spice to the plot! Change the colours of the bars to colours of your own choosing. Also, add meaningful titles and think about labels for the axes.  
+Now that you have created your first barplot, it is time to add some spice to the plot! Change the colours of the bars to colours of your own choosing. Also, add meaningful titles and think about labels for the axes.
 
 💡 *This and the other assignments contain many degrees of freedom for you as a designer of the barplot. The solutions in this response file are just one of many possibilities.*
 
@@ -136,16 +135,16 @@ penguins %>%
 
 Your barplot is almost ready! Now you can play around with the `theme` of the plot.
 
-There are a number of default `themes` in `ggplot2`:  
-- `theme_grey()`  
-- `theme_bw()`  
-- `theme_linedraw()`  
-- `theme_light()`  
-- `theme_dark()`  
-- `theme_minimal()`  
-- `theme_classic()`  
-- `theme_void()`  
-- `theme_test()`  
+There are a number of default `themes` in `ggplot2`:\
+- `theme_grey()`\
+- `theme_bw()`\
+- `theme_linedraw()`\
+- `theme_light()`\
+- `theme_dark()`\
+- `theme_minimal()`\
+- `theme_classic()`\
+- `theme_void()`\
+- `theme_test()`
 
 Reuse the code you made and make sure that it is saved as an object with the name `P1`.
 
@@ -184,7 +183,7 @@ P1 + theme_light()
 
 ## 1.4 Omit legend
 
-A final step in finishing the barplot is to omit the legend. (After all, the legend is redundant and  might as well be removed.)
+A final step in finishing the barplot is to omit the legend. (After all, the legend is redundant and might as well be removed.)
 
 ```{r}
 #| echo: true
@@ -230,7 +229,7 @@ penguins %>%
 
 # Part 2: Visualising quantitative variables
 
-## 2.1 Basic histogram  
+## 2.1 Basic histogram
 
 The penguins data contains measurements of bill length (`bill_length_mm`) and bill depth (`bill_depth_mm`). Both variables are expressed in millimetres.
 
@@ -253,9 +252,9 @@ ggplot(
   )
 ```
 
-## 2.2 Add facets  
+## 2.2 Add facets
 
-Next, create a histogram for each of the three species using `facet_wrap(~species)`. Make sure that male and female penguins can be visually  distinguished (using appropriate colors). At the same time, provide a useful title and subtitle and label the scales (using self-selected labels).
+Next, create a histogram for each of the three species using `facet_wrap(~species)`. Make sure that male and female penguins can be visually distinguished (using appropriate colors). At the same time, provide a useful title and subtitle and label the scales (using self-selected labels).
 
 💡 *Attention! The gender of some penguins has not been recorded. You have to filter these observations BEFORE creating the histogram. A piece of code has already been included to do so. That code now has a `#` in front of it. Remove that `#` so the code will be executed.*
 
@@ -292,9 +291,9 @@ penguins %>% filter(!is.na(sex)) %>%
     )
 ```
 
-## 2.3 Density plot  
+## 2.3 Density plot
 
-Turn the histogram you created in 2.2 into a density plot. 
+Turn the histogram you created in 2.2 into a density plot.
 
 ```{r}
 #| echo: true
@@ -322,7 +321,7 @@ penguins %>% filter(!is.na(sex)) %>%
     )
 ```
 
-## 2.4 Rain cloud plot  
+## 2.4 Rain cloud plot
 
 Finally, create a rain cloud plot that shows the differences between the three penguin species. You can ignore (for now) the difference between male and female penguins.
 
@@ -362,9 +361,9 @@ ggplot(penguins, aes(x = species, y = bill_length_mm)) +
   theme_minimal()
 ```
 
-## 2.5 Add colors to rain cloud plot 
+## 2.5 Add colors to rain cloud plot
 
-A final challenge is adding color to the rain cloud plot which indicates the `sex` of the penguins. Do this for the layer that defines the density (`stat_halfeye()`) and the layer that defines the points (`geom_point()`).  
+A final challenge is adding color to the rain cloud plot which indicates the `sex` of the penguins. Do this for the layer that defines the density (`stat_halfeye()`) and the layer that defines the points (`geom_point()`).
 
 💡 *Attention! The gender of some penguins has not been recorded. You have to filter these observations BEFORE creating the histogram. A piece of code has already been included to do so. That code now has a `#` in front of it. Remove that `#` so the code will be executed.*
 
@@ -418,9 +417,9 @@ penguins %>% filter(!is.na(sex)) %>%
 
 # Part 3: Visualising more than one variable
 
-## 3.1 Basic scatterplot  
+## 3.1 Basic scatterplot
 
-Create a simple scatterplot with bill length on the x-axis (`bill_length_mm`) and bill depth (`bill_depth_mm`) on the y-axis.  Save this plot as an object with the name `P1` and print it.
+Create a simple scatterplot with bill length on the x-axis (`bill_length_mm`) and bill depth (`bill_depth_mm`) on the y-axis. Save this plot as an object with the name `P1` and print it.
 
 💡 *Take a closer look at the scatterplot. What does it tell about the relationship between both variables?*
 
@@ -438,9 +437,9 @@ P1 <- penguins %>%
 P1
 ```
 
-## 3.2 Add linear trend line  
+## 3.2 Add linear trend line
 
-In 3.1 you created a scatterplot of the relationship between bill length and bill depth . (You saved the plot as the object `P1`.) Add a linear trend line to this scatterplot using  `geom_smooth(method = "lm")`. Save that plot as the object `P2` and print it.
+In 3.1 you created a scatterplot of the relationship between bill length and bill depth . (You saved the plot as the object `P1`.) Add a linear trend line to this scatterplot using `geom_smooth(method = "lm")`. Save that plot as the object `P2` and print it.
 
 ```{r}
 #| echo: true
@@ -450,7 +449,7 @@ P2 <- P1 + geom_smooth(method = "lm")
 P2
 ```
 
-## 3.3  Add colors  
+## 3.3 Add colors
 
 Explore the data in more detail by adding colors to the points and the trend line that depend on the variable `species`. To do this, restart coding (do not continue building on `P1` and `P2`).
 
@@ -476,7 +475,7 @@ penguins %>%
     y = "Bill depth (mm)")
 ```
 
-## 3.4  Grouped barplot (counts)  
+## 3.4 Grouped barplot (counts)
 
 Create a barplot that represents the relation between `species` and `sex`. The variable `species` should be mapped to the x-axis. Make sure that the bars are stacked upon one another and that counts are shown. Specify the "fill"-colors of the bars by using `scale_fill_brewer(type = "qual", palette = 1)`. Play around with the palettes and pick the one you like the most.
 
@@ -495,8 +494,8 @@ penguins %>% filter(!is.na(sex)) %>%
   theme_minimal()
 ```
 
-## 3.5 Grouped barplot (percentages)  
- 
+## 3.5 Grouped barplot (percentages)
+
 Reuse the code you wrote in 3.4 to create the same barplot that shows percentages (instead of counts). Style the bar plot using all the ggplot-functions and arguments you learned. If your barplot is finished, save it as the object (`my_barplot`).
 
 ```{r}
@@ -530,11 +529,75 @@ my_barplot <- penguins %>% filter(!is.na(sex)) %>%
 my_barplot
 ```
 
-## 3.6  Save your plot!  
+After asking Chatgpt we also created a similar bar graph that also contains the percentages, making use of `geom_text()`.
+
+```{r}
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+library(palmerpenguins)  # Assuming you are using the palmerpenguins dataset
+
+# Calculate proportions
+penguins_prop <- penguins %>%
+  filter(!is.na(sex)) %>%
+  count(species, sex) %>%
+  group_by(species) %>%
+  mutate(prop = n / sum(n)) %>%
+  ungroup()
+
+# Create the stacked barplot with percentages
+my_barplot <- penguins %>%
+  filter(!is.na(sex)) %>%
+  ggplot(aes(x = species, fill = sex)) +
+  geom_bar(position = position_fill(), aes(y = ..count.. / sum(..count..))) +
+  scale_fill_brewer(type = "qual", palette = 1) + 
+  theme_minimal() +
+  scale_x_discrete(position = "top") +
+  scale_y_continuous(labels = scales::percent, breaks = seq(0, 1, 0.25)) + 
+  labs(
+    title = "Palmer Penguins",
+    subtitle = "Distribution of Penguin Species by Sex",
+    fill = "Sex"
+  ) +
+  coord_cartesian(expand = FALSE) +
+  theme_minimal() + 
+  theme(
+    plot.title = element_text(size = 20, face = "bold"),
+    plot.subtitle = element_text(size = 16, face = "italic"),
+    axis.title = element_blank(),
+    axis.text.x = element_text(size = 14, face = "bold"),
+    legend.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank()
+  ) +
+  geom_text(data = penguins_prop,
+            aes(x = species, y = prop, label = scales::percent(prop, accuracy = 1)),
+            position = position_stack(vjust = 0.5))
+
+# Print the plot
+print(my_barplot)
+
+```
+
+This is the explanation of Chatgpt:
+
+::: callout-tip
+In this code:
+
+1.  **Calculate Proportions**: The `penguins_prop` dataframe is created to calculate the proportion of each sex within each species.
+
+2.  **Stacked Bar Plot**: The `geom_bar` function is used to create the stacked bar plot.
+
+3.  **Add Percentages**: The `geom_text` function is used to add text labels representing the percentage of each sex within each species.
+
+This approach ensures that the percentages are accurately calculated and displayed on your plot.
+:::
+
+## 3.6 Save your plot!
 
 Often you want to save your plot (to use it in an article or a presentation). Saving a plot is easy in ggplot.
 
-Execute the code you find in the box below to save your plot. (First remove all the `#`!)  To find your saved plot, go the the folder 'Saved_figures' (sub folder of 'Exercise3_ggplot2'). 
+Execute the code you find in the box below to save your plot. (First remove all the `#`!) To find your saved plot, go the the folder 'Saved_figures' (sub folder of 'Exercise3_ggplot2').
 
 ```{r}
 #| echo: true
@@ -547,9 +610,9 @@ ggsave(my_barplot,
        bg = "white") # color of background
 ```
 
-# Final visualisation challenge  
+# Final visualisation challenge
 
-Does this figure looks familiar to you?  
+Does this figure looks familiar to you?
 
 ```{r}
 #| echo: false
@@ -632,4 +695,4 @@ Friends %>%
 
 ```
 
-If you like this challenge, have a look at [#tidytuesday project](https://github.com/rfordatascience/tidytuesday). This is a project of the R community that releases a raw data set each Tuesday. This data set can be used to practise data wrangling and visualisation skills. Many participants share the results of their coding fun on social media and/or Github (the code itself).   
+If you like this challenge, have a look at [#tidytuesday project](https://github.com/rfordatascience/tidytuesday). This is a project of the R community that releases a raw data set each Tuesday. This data set can be used to practise data wrangling and visualisation skills. Many participants share the results of their coding fun on social media and/or Github (the code itself).
